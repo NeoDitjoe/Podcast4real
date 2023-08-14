@@ -23,7 +23,6 @@ export default function ShowDetails() {
             
             {
                 seasons.map((season) => {
-                    
                     return(
                         <div key={season.season}>
                             <NavLink to={'/shows/episode'} onClick={() => setEpisodesContext(season)}>

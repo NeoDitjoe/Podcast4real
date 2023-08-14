@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './App.css'
-import { NavBar } from "./Header/Nav";
+import { NavBar } from "./Nav&Footer/Nav";
 import LoginIn from "./Auth/LoginIn";
 import More from "./More/More";
 import Home from "./Homepgae/Home";
@@ -11,6 +11,9 @@ import Seasons, { ShowsDetailsLoader } from "./shows/Seasons";
 import  Episodes from "./shows/Episodes";
 import { useStateContext } from "./UseContext/UseContext";
 import Audioplayer from "./AudioPlayer/AudioPlayer";
+import AboutUs from "./More/About_us";
+import ContactUs from "./More/Contact_us";
+import Help from "./More/help";
 
     const router = createBrowserRouter(
       createRoutesFromElements(
@@ -21,9 +24,9 @@ import Audioplayer from "./AudioPlayer/AudioPlayer";
           <Route path='what'  element={<h1>hello again World</h1>}/>
 
           <Route path='more' element={<More/>}>
-            <Route path="help" element={<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio laboriosam amet iusto eaque repellat, modi doloribus quidem perspiciatis nam. Aliquam?</p>}/>
-            <Route path="contact_us" element={<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut, quis.</p>}/>
-            <Route path="about_us" element={<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis repellat molestias fugit mollitia architecto? Sit.</p>}/>
+            <Route path="help" element={<Help/>}/>
+            <Route path="contact_us" element={<ContactUs/>}/>
+            <Route path="about_us" element={<AboutUs/>}/>
     
           </Route>
           <Route path={'*'} element={<><p>page not found. redirect to home page</p><NavLink to={'/'}>Home</NavLink></>}/>
@@ -41,10 +44,10 @@ import Audioplayer from "./AudioPlayer/AudioPlayer";
 
 function App() {
   
-  const { playAudio, playAudioTitle } = useStateContext()
+  const { playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
 
  return (
-  <>
+  <div className="app-body" onClick={() => collapseMenu ? setCollapseMenu(false) : ""}>
     <RouterProvider router={router}/>
     {
       playAudio && (
@@ -54,7 +57,7 @@ function App() {
         />
       )
     }
-  </>
+  </div>
  )
 }
 

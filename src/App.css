@@ -3,6 +3,7 @@
     overflow: 0;
     padding: 0;
     font-family: 'Roboto';
+    background-color: rgb(29, 29, 29);
 }
 
 /* app */
@@ -15,38 +16,71 @@
     width: 100%;
 }
 
-
-
 /* nav */
 
+@media only screen and (min-width: 768px){
+    nav{
+        background-color: black;
+        padding: 2.5%;
+        display: flex;
+        flex-direction: row;
+        gap: 2%;
+        height: 9vh;
+    }
+
+    nav a{
+        color: white;
+        text-decoration: wavy;
+        background-color: rgb(255, 166, 0);
+        border-radius: 10px;
+        padding: 1%;
+        padding-top: 0.7%;
+        padding-bottom: 0.7%;
+        border: solid 0.01px rgb(226, 69, 69);
+        border-bottom: solid 2px red;
+        
+    }
+
+    nav a.active {
+        background-color: gray;
+    }
+}
+
+.nav {
+    background-color: black;
+}
 nav{
-    background-color: red;
-    padding: 2.5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 2%;
+    background-color: black;
+    padding: 4%;
+    position: sticky;
+    top: 0;
 }
 
 nav a{
     color: white;
     text-decoration: wavy;
-    background-color: rgb(102, 101, 101);
     border-radius: 10px;
-    padding: 1%;
-    padding-top: 0.7%;
-    padding-bottom: 0.7%;
-    border: solid 0.01px rgb(226, 69, 69);
-    border-bottom: solid 2px blueviolet;
+    padding: 2%;
+    border-bottom: solid 2px white;
+    background-color: black;
     
 }
+
 nav a.active {
-    background-color: red;
+    color: orange;
 }
+
 
 .nav-outlet{
     padding: 2%;
-    background-color: rgb(29, 29, 29);    
+       
+}
+
+.max-width-nav{
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /* Shows */
@@ -54,15 +88,18 @@ nav a.active {
 .show{
     overflow-x: scroll;
     overflow-y: hidden;
-    height: 30vh;
-
+    padding-bottom: 5%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    gap: 10px;
+}
+
+.each-show{
+    width: auto;
+    margin: 1%;
 }
 
 .img-show{
-    width: 100%;
+    width: 148px;
     border-radius: 3%;
 }
 
@@ -70,13 +107,77 @@ nav a.active {
     text-decoration: none;
     color: orange;
 }
-/* .show a h6{
-    width: 100%;
-} */
 
+.most-played{
+    color: white;
+    margin-top: 6%;
+    margin-bottom: 4%;
+}
+
+.most-played-opps{
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 4%;
+}
 
 /* seasons */
 
 .img-season{
     width: 40%;
+}
+
+/* footer */
+Footer{
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    padding-top: 10%;
+
+}
+
+footer a, p {
+    text-decoration: none;
+    color: gray;
+}
+
+footer p{
+    margin-top: 5%;
+}
+
+/* more */
+
+@media only screen and (max-width: 768px){
+    .more{
+        width: 104.1%;
+        margin-left: -2%;
+        padding: 5%;
+    }
+}
+
+.about-us p, .about-us li, .about-us ul, .about-us h1, .about-us, .more a, .more  {
+    background-color: white;
+}
+
+.contact-us{
+    margin: 20%;
+    background-color: white;
+    height: 50vh;
+}
+
+.more a{
+    text-decoration: none;
+    margin-left: 3%;
+    color: green;
+}
+
+.more a.active{
+    text-decoration: overline;
+}
+
+.help , .help h4 , .help p, .help ul, .help li{
+    background-color: white;
+}
+
+.contact-us img{
+    background-color: transparent;
 }

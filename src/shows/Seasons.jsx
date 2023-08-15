@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function ShowDetails() {
     const { setEpisodesContext } = useStateContext()
-    const [ collapseDescription, setCollapseDescription] = useState(false)
     const [ showMore, setShowMore] = useState(false)
 
     const shows = useLoaderData()
@@ -13,21 +12,25 @@ export default function ShowDetails() {
 
     return (
         <>
-            <h3>Description</h3>
+
+            <h5 style={{color: 'white'}}>Genres</h5>
+
+                <p>{shows.genres.slice(2).join(', ')}</p>
+            <h5 style={{color: 'white'}}>Description</h5>
 
             <p className="show-description">{showMore ? shows.description : shows.description.substring(0, 250)}
                     <NavLink onClick={() => setShowMore(!showMore)}>{showMore ? 'showless' : 'showmore'} </NavLink>
             </p>
 
-            <h3>Seasons</h3>
+            <h5 style={{color: 'white'}}>Seasons</h5>
             
             {
                 seasons.map((season) => {
                     return(
                         <div key={season.season}>
-                            <NavLink to={'/shows/episode'} onClick={() => setEpisodesContext(season)}>
+                            <NavLink to={'/shows/episode'} style={{textDecoration: 'none'}} onClick={() => setEpisodesContext(season)}>
                                 
-                                <h4>{season.title}</h4>
+                                <h4 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h4>
                                 <img className="img-season" src={season.image}/>
                             </NavLink>  
                         </div>

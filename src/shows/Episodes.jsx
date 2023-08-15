@@ -1,6 +1,5 @@
-import { NavLink, useLoaderData } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
-import { useEffect } from "react"
 
 export default function Episodes(){
 

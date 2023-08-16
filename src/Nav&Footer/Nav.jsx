@@ -28,7 +28,7 @@ export function NavBar(){
                         <img style={{ width: "17%", backgroundColor: "black"}} src={logo} alt="logo"></img>
                         </div>
                         :  
-                    <div>{navbar() }</div>
+                    <div>{navbar()}</div>
                 }  
 
                 {collapseMenu ? navbar() : ''}             

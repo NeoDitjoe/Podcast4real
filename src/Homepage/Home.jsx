@@ -10,6 +10,7 @@ export default function Home(){
             { user ? '' : <NavLink to={"/login"}>Log in for better experience</NavLink>}
             <div>
                 <h1>Welcome to Podcast4real</h1>
+                { user ? <NavLink to={'shows'}>shows</NavLink> : ''}
             </div>
         </>
     )

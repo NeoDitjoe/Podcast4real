@@ -33,7 +33,7 @@ export default function ShowDetails() {
                                     setShowsContext(shows)
                                 }}>
                                 
-                                <h4 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h4>
+                                <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
                                 <img className="img-season" src={season.image}/>
                             </NavLink>  
                         </div>

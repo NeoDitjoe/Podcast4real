@@ -2,7 +2,7 @@ import { useStateContext } from "../UseContext/UseContext"
 import { Link } from "react-router-dom"
 import Shows from "./Shows";
 
-export default function SlideSho({mapOver}){
+export default function FavouritesShow({mapOver}){
 
     const { setPlayAudioTitle, setPlayAudio } = useStateContext()
 
@@ -23,8 +23,8 @@ export default function SlideSho({mapOver}){
                 {  
                     mapOver.map((show) => {
                         return (
-                            <>
-                                <Link to={show.id} key={show.id} className="each-show" 
+                            <div key={show.id}>
+                                <Link to={show.id} className="each-show" 
                                     onClick={() => {
                                         setPlayAudio(null)
                                         setPlayAudioTitle(null)
@@ -34,12 +34,11 @@ export default function SlideSho({mapOver}){
                                             setPlayAudio(show.audio)
                                         }, 200);
                                     }}>
-                                    
                                     <img className="img-show" src={show.image}></img>
                                     <p>{show.shows} <br></br>{new Date(show.created_at).toString().slice(3, 21)}</p>
                                     <h6 style={{paddingTop: "0"}}>{truncateText(show.title , 15)}</h6>
                                 </Link>
-                            </>
+                            </div>
                         )
                     })
                 }

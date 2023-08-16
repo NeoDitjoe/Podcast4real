@@ -2,7 +2,7 @@ import { useLoaderData, Link } from "react-router-dom"
 import supabase from "../Auth/supabase"
 import { useEffect, useState } from "react"
 import { useStateContext } from "../UseContext/UseContext"
-import SlideSho from "./favourites"
+import FavouritesShow from "./favourites"
 
 export default function Shows(){
 
@@ -77,10 +77,10 @@ export default function Shows(){
             {
                 user ? <div>
                     {slideShow("Most Played", mostPlayed, "most-played" )}
-                    {favourites && <SlideSho
+                    {favourites && <FavouritesShow
                         mapOver = {favourites.slice(0, 10)}
                     />}
-                </div> : <Link to='/login'>Log in</Link>
+                </div> : <Link to='/login'>User not found Please Log in</Link>
             }
         </>
     )

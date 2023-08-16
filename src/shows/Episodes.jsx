@@ -56,7 +56,6 @@ export default function Episodes(){
                                 style={{background:'transparent', border: "transparent"}} 
                                     onClick={() => {
 
-                                        // setStarColor(!starColor)
                                         const addfavourite = async () => {
                                             const { data, error} = await supabase
                                                 .from('podcast4real')
@@ -72,7 +71,7 @@ export default function Episodes(){
                                         addfavourite()
                                     }}
 
-                                    > {HandleAddingToFavourites(episode.title) ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> }
+                                    > {HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } {/* || { starColor ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> }  */}
                             </button>
                         </div>
                     )

@@ -9,8 +9,8 @@ import starred from '../assets/starred.png'
 export default function Episodes(){
 
     const episode = useLoaderData()
-    const { episodesContext, setPlayAudio, setPlayAudioTitle, showsContext, favouritesState } = useStateContext()
-    const [ starColor, setStarColor ] = useState(false)
+    const { userId, episodesContext, setPlayAudio, setPlayAudioTitle, showsContext, favouritesState } = useStateContext()
+
 
     function HandleAddingToFavourites(favEpisode) {
         return (
@@ -23,7 +23,6 @@ export default function Episodes(){
    
     return (
         <>
-            
             <div style={{background: 'transparent',padding:'3%', zIndex:'40px', textAlign:'center'}}>
                 <img src={episodesContext.image} alt="cover-art" style={{filter: "blur(40px)", width: '60%', zIndex:'-10px'}}/>
 
@@ -34,7 +33,7 @@ export default function Episodes(){
 
             {
                 episodesContext.episodes.map((episode) => {
-
+                  const [ starColor, setStarColor ] = useState(false)
                     return (
                         <div key={episode.episode} className="episodes">
                             <div className="episode-title" 
@@ -56,6 +55,7 @@ export default function Episodes(){
                                 style={{background:'transparent', border: "transparent"}} 
                                     onClick={() => {
 
+                                        setStarColor(!starColor)
                                         const addfavourite = async () => {
                                             const { data, error} = await supabase
                                                 .from('podcast4real')
@@ -64,14 +64,27 @@ export default function Episodes(){
                                                     audio: episode.file,
                                                     image: episodesContext.image,
                                                     shows: showsContext.title,
-                                                    // user__id:
+                                                    user__id: userId
                                                 })
                                         }
 
-                                        addfavourite()
+                                        const removeFavs = async() => {
+                                            const { data, error } = await supabase
+                                              .from('podcast4real')
+                                              .delete()
+                                              .eq('id', userId)
+                              
+                                            if(error){
+                                              console.error(error)
+                                            } else{
+                                              console.log(data)
+                                            }
+                                          }
+
+                                          addfavourite()
                                     }}
 
-                                    > {HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } {/* || { starColor ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> }  */}
+                                    >{ starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } 
                             </button>
                         </div>
                     )

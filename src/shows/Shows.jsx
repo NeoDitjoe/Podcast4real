@@ -7,8 +7,7 @@ import FavouritesShow from "./favourites"
 export default function Shows(){
 
     const [ fetchError, setfetchError ] = useState(null)
-    // const [ favouritesState, setFavouritesState ] = useState(null)
-    const { user, setFavouritesState, favouritesState } = useStateContext()
+    const { userId, user, setFavouritesState, favouritesState } = useStateContext()
 
     const shows = useLoaderData()
 
@@ -26,13 +25,13 @@ export default function Shows(){
     }
 
     useEffect(() => {
-        // if(userId){
+        if(userId){
             const fetchData = async () => {
                 try {
                     const {data, error } = await supabase
                         .from('podcast4real')
                         .select()
-                        // eq('user__id', userId)
+                        .eq('user__id', userId)
 
                         if(error){
                             setfetchError(error)
@@ -46,7 +45,7 @@ export default function Shows(){
                 }
             }
             fetchData()
-        // }
+        }
     })
 
     function slideShow(title, mapOver ,titleStyle){

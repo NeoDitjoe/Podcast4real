@@ -13,7 +13,11 @@ export function NavBar(){
                 <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
                 <NavLink to='/'>home</NavLink>
                 <NavLink to={user ? 'what' : "login"}>what</NavLink>
+
+                
                 <NavLink to='more'>more</NavLink>
+
+
                 { user ? <NavLink to={ user ? 'shows': 'login'}>shows</NavLink> : ''} 
             </div>
         )

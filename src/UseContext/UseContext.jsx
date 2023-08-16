@@ -14,6 +14,7 @@ export default function StateContextProvider({ children }) {
     const [ collapseMenu, setCollapseMenu ] = useState(false)
     const [ user, setUser] = useState(null)
     const [ showsContext, setShowsContext] = useState(null)
+    const [ favouritesState, setFavouritesState ] = useState(null)
 
     useEffect(() => {
         const session = supabase.auth.getSession()
@@ -44,7 +45,7 @@ export default function StateContextProvider({ children }) {
       }, [])
 
     return (
-        <Context.Provider value = {{ showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
+        <Context.Provider value = {{ favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
             { children }
         </Context.Provider>
     )

@@ -7,8 +7,8 @@ import SlideSho from "./favourites"
 export default function Shows(){
 
     const [ fetchError, setfetchError ] = useState(null)
-    const [ favouritesState, setFavouritesState ] = useState(null)
-    const { user } = useStateContext()
+    // const [ favouritesState, setFavouritesState ] = useState(null)
+    const { user, setFavouritesState, favouritesState } = useStateContext()
 
     const shows = useLoaderData()
 

@@ -8,12 +8,14 @@ export default function Episodes(){
 
     const episode = useLoaderData()
     const { episodesContext, setPlayAudio, setPlayAudioTitle, showsContext } = useStateContext()
+    {console.log(Object.entries(episodesContext.episodes))}
    
     return (
         <>
-            <img src={episodesContext.image} alt="cover-art" style={{filter: "blur(30px)", width: '70%', zIndex:'-10px'}}/>
             
-            <div style={{background: 'transparent',padding:'3%', zIndex:'40px'}}>
+            <div style={{background: 'transparent',padding:'3%', zIndex:'40px', textAlign:'center'}}>
+                <img src={episodesContext.image} alt="cover-art" style={{filter: "blur(40px)", width: '60%', zIndex:'-10px'}}/>
+
                 <img src={episodesContext.image} alt="cover-art" style={{ width: '42%'}}/>
                 <h2 style={{color:"white", background: 'transparent'}}>{episodesContext.title}</h2>
                 <p style={{ background:'transparent', color:'white', fontSize:'80%'}}><img src={logo} style={{ background:'transparent', width:'13%'}}></img> podcast4real</p>
@@ -23,16 +25,20 @@ export default function Episodes(){
                 episodesContext.episodes.map((episode) => {
                     return (    
                         <div key={episode.episode} className="episodes">
-                            <p>{episode.title}</p>
+                            <div className="episode-title" 
+                                    onClick={() => {
+                                        setPlayAudio(null)
+                                        setPlayAudioTitle(null)
 
-                            <p onClick={() => {
-                                setPlayAudio(null)
+                                        setTimeout(() => {
+                                            setPlayAudioTitle(episode.title)
+                                            setPlayAudio(episode.file)
+                                        }, 1000);
+                                    }}>
 
-                                setTimeout(() => {
-                                    setPlayAudioTitle(episode.title)
-                                    setPlayAudio(episode.file)
-                                }, 900);
-                            }}>Play</p>
+                                <p>{episode.episode}</p>
+                                <p>{episode.title}</p>
+                            </div>
 
                             <button 
                                 style={{background:'orange'}} 

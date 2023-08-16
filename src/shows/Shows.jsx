@@ -8,7 +8,7 @@ export default function Shows(){
 
     const [ fetchError, setfetchError ] = useState(null)
     const [ favouritesState, setFavouritesState ] = useState(null)
-    const { setPlayAudioTitle, setPlayAudio } = useStateContext()
+    const { user } = useStateContext()
 
     const shows = useLoaderData()
 
@@ -72,39 +72,16 @@ export default function Shows(){
         )
     }
 
-    // function slideSho({mapOver}){
-    //     return(
-    //         <>
-    //             <h5 className="most-played-opps">favourites</h5>
-    //             <div className="show">
-                    
-    //                 {  
-    //                     mapOver.map((show) => {
-    //                         return (
-    //                             <Link to={show.id} key={show.id} className="each-show" onClick={() => {
-    //                                 setPlayAudio(show.audio)
-    //                                 setPlayAudioTitle(show.title)
-    //                             }}>
-                                    
-    //                                 <img className="img-show" src={show.image}></img>
-    //                                 <p>{show.shows}</p>
-    //                                 <h6 style={{paddingTop: "6%"}}>{truncateText(show.title , 15)}</h6>
-    //                             </Link>
-    //                         )
-    //                     })
-    //                 }
-    //             </div>
-    //         </>
-    //     )
-    // }
-
     return (
         <>
-            {slideShow("Most Played", mostPlayed, "most-played" )}
-            {/* {favourites && slideSho(favourites.slice(0, 10))} */}
-            {favourites && <SlideSho
-                mapOver = {favourites.slice(0, 10)}
-            />}
+            {
+                user ? <div>
+                    {slideShow("Most Played", mostPlayed, "most-played" )}
+                    {favourites && <SlideSho
+                        mapOver = {favourites.slice(0, 10)}
+                    />}
+                </div> : <Link to='/login'>Log in</Link>
+            }
         </>
     )
 }

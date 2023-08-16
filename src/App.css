@@ -8,12 +8,22 @@
 
 /* app */
 
+/* audioplayer */
+
 .audioplayer{
     padding: 3%;
     background-color: rgb(242, 242, 242);
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+.audioplayer h4{
+    background-color:  rgb(242, 242, 242);
+}
+
+.audioplayer audio{
+    background-color: rgb(242, 242, 242);
 }
 
 /* nav */
@@ -129,7 +139,36 @@ nav a.active {
 /* Episodes */
 
 .episodes{
-    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 90% 6%;
+    align-items: center;
+    padding-top: 6%;
+    padding-bottom: 2%;
+}
+
+.episodes:hover .episode-title{
+    background-color: rgba(56, 56, 56, 0);
+}
+.episodes:hover p{
+    background-color: rgba(56, 56, 56, 0);
+}
+.episodes:hover{
+    background-color: rgba(56, 56, 56, 0.384);
+}
+
+.episode-title{
+    display: flex;
+    flex-direction: row;
+    /* gap: 3%; */
+
+}
+
+.episode-title p:nth-child(1) {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.episode-title p:nth-child(2) {
+    color: white;
 }
 
 /* footer */

@@ -4,7 +4,7 @@ import { useStateContext } from "../UseContext/UseContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function ShowDetails() {
-    const { setEpisodesContext } = useStateContext()
+    const { setEpisodesContext, setShowsContext } = useStateContext()
     const [ showMore, setShowMore] = useState(false)
 
     const shows = useLoaderData()
@@ -28,7 +28,10 @@ export default function ShowDetails() {
                 seasons.map((season) => {
                     return(
                         <div key={season.season}>
-                            <NavLink to={'/shows/episode'} style={{textDecoration: 'none'}} onClick={() => setEpisodesContext(season)}>
+                            <NavLink to={'/shows/episode'} style={{textDecoration: 'none'}} onClick={() => {
+                                    setEpisodesContext(season)
+                                    setShowsContext(shows)
+                                }}>
                                 
                                 <h4 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h4>
                                 <img className="img-season" src={season.image}/>

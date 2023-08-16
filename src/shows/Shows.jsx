@@ -1,15 +1,20 @@
 import { useLoaderData, Link } from "react-router-dom"
-import { moviesData } from "../../data/movies"
-
+import supabase from "../Auth/supabase"
+import { useEffect, useState } from "react"
+import { useStateContext } from "../UseContext/UseContext"
+import SlideSho from "./favourites"
 
 export default function Shows(){
+
+    const [ fetchError, setfetchError ] = useState(null)
+    const [ favouritesState, setFavouritesState ] = useState(null)
+    const { setPlayAudioTitle, setPlayAudio } = useStateContext()
+
     const shows = useLoaderData()
 
     /* These are the different options e.g most played.. */
     const mostPlayed = shows.slice(10, 20)
-    const favourites = shows.slice(30, 40)
-
-    /* shows.slice(Math.floor(Math.random() * (shows.length - 4)), Math.floor(Math.random() * (shows.length - 4)) + 10) */
+    const favourites = favouritesState
 
     /* these truncate the title */
     function truncateText(text, maxLength) {
@@ -18,7 +23,31 @@ export default function Shows(){
         }
         const truncated = text.substr(0, maxLength);
         return truncated.substr(0, Math.min(truncated.length, truncated.lastIndexOf(" "))) + " ";
-      }
+    }
+
+    useEffect(() => {
+        // if(userId){
+            const fetchData = async () => {
+                try {
+                    const {data, error } = await supabase
+                        .from('podcast4real')
+                        .select()
+                        // eq('user__id', userId)
+
+                        if(error){
+                            setfetchError(error)
+                            setFavouritesState(null)
+                        }else{
+                            setFavouritesState(data)
+                            setfetchError(null)
+                        }
+                }catch(error){
+                    console.log(error)
+                }
+            }
+            fetchData()
+        // }
+    })
 
     function slideShow(title, mapOver ,titleStyle){
         return(
@@ -31,8 +60,9 @@ export default function Shows(){
                             return (
                                 <Link to={show.id} key={show.id} className="each-show">
                                     
-                                    <img className="img-show" src={show.image}></img> 
-                                    <h6 style={{paddingTop: "6%"}}>{truncateText(show.title , 15)}</h6> 
+                                    <img className="img-show" src={show.image}></img>
+                                    <p>{show.shows}</p>
+                                    <h6 style={{paddingTop: "6%"}}>{truncateText(show.title , 15)}</h6>
                                 </Link>
                             )
                         })
@@ -42,10 +72,39 @@ export default function Shows(){
         )
     }
 
+    // function slideSho({mapOver}){
+    //     return(
+    //         <>
+    //             <h5 className="most-played-opps">favourites</h5>
+    //             <div className="show">
+                    
+    //                 {  
+    //                     mapOver.map((show) => {
+    //                         return (
+    //                             <Link to={show.id} key={show.id} className="each-show" onClick={() => {
+    //                                 setPlayAudio(show.audio)
+    //                                 setPlayAudioTitle(show.title)
+    //                             }}>
+                                    
+    //                                 <img className="img-show" src={show.image}></img>
+    //                                 <p>{show.shows}</p>
+    //                                 <h6 style={{paddingTop: "6%"}}>{truncateText(show.title , 15)}</h6>
+    //                             </Link>
+    //                         )
+    //                     })
+    //                 }
+    //             </div>
+    //         </>
+    //     )
+    // }
+
     return (
         <>
             {slideShow("Most Played", mostPlayed, "most-played" )}
-            {slideShow("Trending", favourites, "most-played")}
+            {/* {favourites && slideSho(favourites.slice(0, 10))} */}
+            {favourites && <SlideSho
+                mapOver = {favourites.slice(0, 10)}
+            />}
         </>
     )
 }

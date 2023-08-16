@@ -54,6 +54,7 @@ nav{
     padding: 4%;
     position: sticky;
     top: 0;
+    z-index: 2;
 }
 
 nav a{
@@ -88,7 +89,6 @@ nav a.active {
 .show{
     overflow-x: scroll;
     overflow-y: hidden;
-    padding-bottom: 5%;
     display: flex;
     gap: 10px;
 }
@@ -116,7 +116,7 @@ nav a.active {
 
 .most-played-opps{
     color: white;
-    margin-top: 1%;
+    /* margin-top: 1%; */
     margin-bottom: 4%;
 }
 
@@ -124,6 +124,12 @@ nav a.active {
 
 .img-season{
     width: 40%;
+}
+
+/* Episodes */
+
+.episodes{
+    margin-top: 10%;
 }
 
 /* footer */
@@ -181,3 +187,4 @@ footer p{
 .contact-us img{
     background-color: transparent;
 }
+

@@ -172,6 +172,9 @@ nav a.active {
 }
 
 /* footer */
+footer{
+    margin-bottom: 30%;
+}
 Footer{
     display: flex;
     flex-direction: column;

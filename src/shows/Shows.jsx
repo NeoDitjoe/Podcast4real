@@ -77,7 +77,7 @@ export default function Shows(){
                 user ? <div>
                     {slideShow("Most Played", mostPlayed, "most-played" )}
                     {favourites && <FavouritesShow
-                        mapOver = {favourites/* .slice(0, 10) */}
+                        mapOver = {favourites}
                     />}
                 </div> : <Link to='/login'>User not found Please Log in</Link>
             }

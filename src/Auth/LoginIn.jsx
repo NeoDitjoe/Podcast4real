@@ -10,7 +10,7 @@ export default function LoginIn(){
         await supabase.auth.signInWithOAuth({
           provider: "github"
         })
-      }
+    }
     
     return (
         <>

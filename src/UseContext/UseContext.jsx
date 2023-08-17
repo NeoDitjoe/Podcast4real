@@ -16,6 +16,7 @@ export default function StateContextProvider({ children }) {
     const [ showsContext, setShowsContext] = useState(null)
     const [ favouritesState, setFavouritesState ] = useState(null)
     const [ userId, setUserId ] = useState(null)
+    const [ loginContext, setLoginContext ] = useState(null)
 
     useEffect(() => {
         const session = supabase.auth.getSession()
@@ -25,7 +26,7 @@ export default function StateContextProvider({ children }) {
           switch(event) {
             case 'SIGNED_IN':
               setUser(session?.user)
-    
+              
               /**
                * store the user id in a usestate then, the state is used to get spicific 
                * users data and to also store the id to the database
@@ -46,7 +47,7 @@ export default function StateContextProvider({ children }) {
       }, [])
 
     return (
-        <Context.Provider value = {{ userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
+        <Context.Provider value = {{ loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
             { children }
         </Context.Provider>
     )

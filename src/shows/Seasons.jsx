@@ -24,6 +24,8 @@ export default function ShowDetails() {
                     <NavLink onClick={() => setShowMore(!showMore)}>{showMore ? 'showless' : 'showmore'} </NavLink>
             </p>
 
+            
+
             <h5 style={{color: 'white'}}>Seasons</h5>
             
             {
@@ -31,52 +33,13 @@ export default function ShowDetails() {
                     
                     return(
                         <div key={season.season}>
-                            <NavLink to={"episodes"} style={{textDecoration: 'none'}} >
+                            <NavLink to={/* userId ?  */"episodes" /* : '/' */} style={{textDecoration: 'none'}}>
+                                
                                 {/* {console.log(season.episodes)} */}
                                 <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
                                 <img className="img-season" src={season.image} onClick={() => {
                                     setEpisodesContext(season)
-                                    setShowsContext(shows)
-
-                                    season.episodes.map((episode) => {
-
-                                        const removeFavs = async() => {
-                                            const { data, error } = await supabase
-                                              .from('recentSeason')
-                                              .delete()
-                                              .eq('user_id', userId)
-                              
-                                            if(error){
-                                              console.error(error)
-                                            } else{
-                                              console.log(data)
-                                            }
-                                          }
-                                          
-                                            removeFavs()
-                                          
-
-                                         setTimeout(() => {
-
-                                            const recentSeason = async () => {
-                                                const {data, error } = await supabase
-                                                    .from('recentSeason')
-                                                    .insert({
-                                                        user_id: userId,
-                                                        title: episode.title,
-                                                        image: season.image,
-                                                        episode: episode.episode,
-                                                        file: episode.file,
-                                                        showtitle: shows.title
-
-                                                    })
-                                            }
-                                            recentSeason()
-                                         }, 300);
-                                        
-                                      
-                                     })
-                                }}/>
+                                    setShowsContext(shows)}}/>
                             </NavLink> 
 
                         </div>

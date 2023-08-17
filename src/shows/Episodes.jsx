@@ -10,7 +10,7 @@ import ScrollToTop from "../scrollToTop/ScrollToTop"
 export default function Episodes(){
 
     // const episodee = useLoaderData()
-    const { userId, episodesContext, setPlayAudio, setPlayAudioTitle, showsContext, favouritesState } = useStateContext()
+    const { setAudioShow, userId, episodesContext, setPlayAudioImage, setPlayAudio, setPlayAudioTitle, showsContext, favouritesState } = useStateContext()
     const [ openedSeason, setOpenedSeason ] = useState(null)
 
     function HandleAddingToFavourites(favEpisode) {  
@@ -76,10 +76,14 @@ export default function Episodes(){
                                                     onClick={() => {
                                                         setPlayAudio(null)
                                                         setPlayAudioTitle(null)
+                                                        setPlayAudioImage(null)
+                                                        setAudioShow(null)
 
                                                         setTimeout(() => {
                                                             setPlayAudioTitle(episode.title)
                                                             setPlayAudio(episode.file)
+                                                            setPlayAudioImage(episodesContext.image)
+                                                            setAudioShow(episodesContext.title)
                                                         }, 1000);
                                                     }}>
 

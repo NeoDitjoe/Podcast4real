@@ -11,12 +11,14 @@ export default function StateContextProvider({ children }) {
     const [ episodesContext, setEpisodesContext ] = useState(null)//get episodes from seasons 
     const [ playAudio, setPlayAudio ] = useState(null)
     const [ playAudioTitle, setPlayAudioTitle ] = useState(null)
+    const [ playAudioImage, setPlayAudioImage ] = useState(null)
     const [ collapseMenu, setCollapseMenu ] = useState(false)
     const [ user, setUser] = useState(null)
     const [ showsContext, setShowsContext] = useState(null)
     const [ favouritesState, setFavouritesState ] = useState(null)
     const [ userId, setUserId ] = useState(null)
     const [ loginContext, setLoginContext ] = useState(null)
+    const [ audioShow, setAudioShow ] = useState(null)
 
     useEffect(() => {
         const session = supabase.auth.getSession()
@@ -47,7 +49,7 @@ export default function StateContextProvider({ children }) {
       }, [])
 
     return (
-        <Context.Provider value = {{ loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
+        <Context.Provider value = {{ audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
             { children }
         </Context.Provider>
     )

@@ -229,3 +229,65 @@ footer p{
 .contact-us img{
     background-color: transparent;
 }
+
+
+/* Audio Player */
+
+.component {
+  background-color: white;
+  width: 25%;
+  max-width: 600px;
+  margin: 1em auto;
+  padding: 5%;
+  padding-bottom: 2em;
+  border: 0.1px solid black;
+  border-radius: 10px;
+}
+
+.musicCover {
+  border-radius: 10%;
+  width: 100%;
+}
+
+.playButton {
+  background: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.title{
+    background-color: white;
+}
+
+.subTitle {
+  margin-top: -1em;
+  color: #4f4f4f;
+  background-color: white;
+}
+
+.time {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  color: #828282;
+  font-size: smaller;
+  
+}
+
+.timeline {
+  width: 80%;
+  background-color: #27ae60;
+  
+}
+
+input[type="range"] {
+  background-color: #27ae60;
+}
+
+@media (max-width: 900px) {
+  .component {
+    width: 50%;
+  }
+}

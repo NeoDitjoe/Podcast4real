@@ -14,6 +14,7 @@ import Audioplayer from "./AudioPlayer/AudioPlayer";
 import AboutUs from "./More/About_us";
 import ContactUs from "./More/Contact_us";
 import Help from "./More/help";
+import { MusicPlayer } from "./AudioPlayer/AudioPlayer";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
         <Route path=':id/episodes' element={<Episodes/>}/>
         <Route path={'*'} element={<><p>page not found. redirect to home page</p><NavLink to={'/shows'}>back</NavLink></>}/>
         
+
       </Route>
 
     </Route>
@@ -45,18 +47,27 @@ const router = createBrowserRouter(
 
 function App() {
   
-  const { playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
+  const { audioShow, playAudioImage, playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
 
  return (
   <div className="app-body" onClick={() => collapseMenu ? setCollapseMenu(false) : ""}>
     <RouterProvider router={router}/>
-    {
+    {/* {
       playAudio && (
         <Audioplayer
           audio={playAudio}
           audiotitle={playAudioTitle}
         />
       )
+    } */}
+
+    {
+      playAudio && <MusicPlayer
+        audio={playAudio}
+        title={playAudioTitle}
+        image={playAudioImage}
+        show={audioShow}
+      />
     }
   </div>
  )

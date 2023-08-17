@@ -4,7 +4,7 @@ import Shows from "./Shows";
 
 export default function FavouritesShow({mapOver}){
 
-    const { setPlayAudioTitle, setPlayAudio } = useStateContext()
+    const { setAudioShow, setPlayAudioImage, setPlayAudioTitle, setPlayAudio } = useStateContext()
 
     /* these truncate the title */
     function truncateText(text, maxLength) {
@@ -28,10 +28,14 @@ export default function FavouritesShow({mapOver}){
                                     onClick={() => {
                                         setPlayAudio(null)
                                         setPlayAudioTitle(null)
+                                        setPlayAudioImage(null)
+                                        setAudioShow(null)
 
                                         setTimeout(() => {
                                             setPlayAudioTitle(show.title)
                                             setPlayAudio(show.audio)
+                                            setPlayAudioImage(show.image)
+                                            setAudioShow(show.shows)
                                         }, 200);
                                     }}>
                                     <img className="img-show" src={show.image}></img>

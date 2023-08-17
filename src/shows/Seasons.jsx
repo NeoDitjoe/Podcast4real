@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
-import { NavLink, useLoaderData, useParams } from "react-router-dom"
+import { NavLink, Outlet, useLoaderData, useParams } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import supabase from "../Auth/supabase"
 
 export default function ShowDetails() {
-    const { setEpisodesContext, setShowsContext } = useStateContext()
+    const { setEpisodesContext, setShowsContext, userId } = useStateContext()
     const [ showMore, setShowMore] = useState(false)
 
     const shows = useLoaderData()
     const seasons = shows.seasons
+    const m= "season.episodes"
 
     return (
         <>
@@ -26,16 +28,57 @@ export default function ShowDetails() {
             
             {
                 seasons.map((season) => {
+                    
                     return(
                         <div key={season.season}>
-                            <NavLink to={'/shows/episode'} style={{textDecoration: 'none'}} onClick={() => {
+                            <NavLink to={"episodes"} style={{textDecoration: 'none'}} >
+                                {/* {console.log(season.episodes)} */}
+                                <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
+                                <img className="img-season" src={season.image} onClick={() => {
                                     setEpisodesContext(season)
                                     setShowsContext(shows)
-                                }}>
-                                
-                                <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
-                                <img className="img-season" src={season.image}/>
-                            </NavLink>  
+
+                                    season.episodes.map((episode) => {
+
+                                        const removeFavs = async() => {
+                                            const { data, error } = await supabase
+                                              .from('recentSeason')
+                                              .delete()
+                                              .eq('user_id', userId)
+                              
+                                            if(error){
+                                              console.error(error)
+                                            } else{
+                                              console.log(data)
+                                            }
+                                          }
+                                          
+                                            removeFavs()
+                                          
+
+                                         setTimeout(() => {
+
+                                            const recentSeason = async () => {
+                                                const {data, error } = await supabase
+                                                    .from('recentSeason')
+                                                    .insert({
+                                                        user_id: userId,
+                                                        title: episode.title,
+                                                        image: season.image,
+                                                        episode: episode.episode,
+                                                        file: episode.file,
+                                                        showtitle: shows.title
+
+                                                    })
+                                            }
+                                            recentSeason()
+                                         }, 300);
+                                        
+                                      
+                                     })
+                                }}/>
+                            </NavLink> 
+
                         </div>
                     )
                 })

@@ -8,13 +8,13 @@ import { createBrowserRouter, createRoutesFromElements, NavLink, Route, RouterPr
 import Shows, {Showsloader} from "./shows/Shows";
 import ShowsLayout from "./shows/Showslayout";
 import Seasons, { ShowsDetailsLoader } from "./shows/Seasons";
-import  Episodes from "./shows/Episodes";
+import Episodes from "./shows/Episodes";
 import { useStateContext } from "./UseContext/UseContext";
 import Audioplayer from "./AudioPlayer/AudioPlayer";
 import AboutUs from "./More/About_us";
 import ContactUs from "./More/Contact_us";
 import Help from "./More/help";
-import supabase from "./Auth/supabase";
+// import { episodeLoader } from "./shows/Episodes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,8 +35,9 @@ const router = createBrowserRouter(
       <Route path='shows' element={<ShowsLayout/>}  >
         <Route index element={<Shows/>} loader={Showsloader}/>
         <Route path=':id' element={<Seasons/>} loader={ShowsDetailsLoader}/>
+        <Route path=':id/episodes' element={<Episodes/>}/>
         <Route path={'*'} element={<><p>page not found. redirect to home page</p><NavLink to={'/shows'}>back</NavLink></>}/>
-        <Route path='episode' element={<Episodes/>}/>
+        
       </Route>
 
     </Route>

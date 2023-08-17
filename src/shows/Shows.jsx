@@ -12,7 +12,7 @@ export default function Shows(){
     const shows = useLoaderData()
 
     /* These are the different options e.g most played.. */
-    const mostPlayed = shows.slice(10, 20)
+    const mostPlayed = shows/* .slice(15, 25) */
     const favourites = favouritesState
 
     /* these truncate the title */
@@ -77,7 +77,7 @@ export default function Shows(){
                 user ? <div>
                     {slideShow("Most Played", mostPlayed, "most-played" )}
                     {favourites && <FavouritesShow
-                        mapOver = {favourites.slice(0, 10)}
+                        mapOver = {favourites/* .slice(0, 10) */}
                     />}
                 </div> : <Link to='/login'>User not found Please Log in</Link>
             }

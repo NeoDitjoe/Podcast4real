@@ -22,7 +22,10 @@ export default function StateContextProvider({ children }) {
     const [ audioLayout, setAudioLayout ] = useState(false)
 
     return (
-        <Context.Provider value = {{ audioLayout, setAudioLayout, audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
+        <Context.Provider value = {{ audioLayout, setAudioLayout, audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , 
+                userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, 
+                playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle 
+            }}>
             { children }
         </Context.Provider>
     )

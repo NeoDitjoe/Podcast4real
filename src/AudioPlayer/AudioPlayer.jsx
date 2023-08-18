@@ -4,10 +4,14 @@ import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi"; 
 import { IconContext } from "react-icons";
 import { useStateContext } from "../UseContext/UseContext";
+import starred from '../assets/starred.png'
+import star from '../assets/starblack.png'
+import supabase from "../Auth/supabase";
 
 export function MusicPlayer({audio, title, image, show}){
 
-    const { audioLayout, setAudioLayout } = useStateContext()
+    const { audioLayout, setAudioLayout, favouritesState, userId } = useStateContext()
+    const [ starColor, setStarColor ] = useState(false)
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [play, { pause, duration, sound }] = useSound(audio);
@@ -52,9 +56,18 @@ export function MusicPlayer({audio, title, image, show}){
             }, 1000);
             return () => clearInterval(interval);
           }, [sound]);
+
+        function HandleAddingToFavourites(favEpisode) {  
+            return (
+                    favouritesState && favouritesState.some((episode) =>  episode.title === favEpisode)
+            )
+        }
+        useEffect(() => {
+            HandleAddingToFavourites()
+        })
                     
 
-      return (
+    return (
         <div className={ audioLayout ? "component" : "min-component"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>
             <h2 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h2>
             <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
@@ -84,6 +97,38 @@ export function MusicPlayer({audio, title, image, show}){
                 </div>
                 
             </div>
+
+            <button onClick={() => {
+                setStarColor(!starColor)
+
+                const addfavourite = async () => {
+                    const { data, error} = await supabase
+                        .from('podcast4real')
+                        .upsert({
+                            title: title,
+                            audio: audio,
+                            image: image,
+                            shows: title,
+                            user__id: userId
+                        })
+                }
+
+                const removeFavs = async() => {
+                    const { data, error } = await supabase
+                    .from('podcast4real')
+                    .delete()
+                    .eq('user__id', userId)
+    
+                    if(error){
+                    console.error("what are doing error")
+                    } else{
+                    console.log(data)
+                    }
+                }
+
+                HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
+                
+                }}>{ starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> }</button>
 
             { audioLayout ? 
             

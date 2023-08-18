@@ -110,7 +110,7 @@ export default function Episodes(){
                                                             const { data, error } = await supabase
                                                             .from('podcast4real')
                                                             .delete()
-                                                            .eq('id', userId)
+                                                            .eq('user__id', userId)
                                             
                                                             if(error){
                                                             console.error(error)
@@ -119,7 +119,7 @@ export default function Episodes(){
                                                             }
                                                         }
 
-                                                        addfavourite()
+                                                        HandleAddingToFavourites(episode.title) ?  removeFavs()  : addfavourite() 
                                                     }}
 
                                                     >{ starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } 

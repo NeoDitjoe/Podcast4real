@@ -15,6 +15,7 @@ import AboutUs from "./More/About_us";
 import ContactUs from "./More/Contact_us";
 import Help from "./More/help";
 import { MusicPlayer } from "./AudioPlayer/AudioPlayer";
+import supabase from "./Auth/supabase";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,19 +48,43 @@ const router = createBrowserRouter(
 
 function App() {
   
-  const { audioShow, playAudioImage, playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
+  const { setUser, setUserId, audioLayout, setAudioLayout, audioShow, playAudioImage, playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
+
+  // const [ audioLayout, setAudioLayout ] = useState(false)
+
+  useEffect(() => {
+    const session = supabase.auth.getSession()
+    setUser(session?.user)
+
+    const unsubscribe = () => supabase.auth.onAuthStateChange((event, session) => {
+      switch(event) {
+        case 'SIGNED_IN':
+          setUser(session?.user)
+          
+          /**
+           * store the user id in a usestate then, the state is used to get spicific 
+           * users data and to also store the id to the database
+           */
+          setUserId(session.user.id)
+          
+          break;
+        case 'SIGNED_OUT':
+          setUser(null)
+          break;
+        default:  
+      }
+    })
+
+    return () => {
+      unsubscribe()
+    }
+  }, [])
 
  return (
   <div className="app-body" onClick={() => collapseMenu ? setCollapseMenu(false) : ""}>
-    <RouterProvider router={router}/>
-    {/* {
-      playAudio && (
-        <Audioplayer
-          audio={playAudio}
-          audiotitle={playAudioTitle}
-        />
-      )
-    } */}
+    
+    { audioLayout ? '' :<RouterProvider router={router}/>  }
+
 
     {
       playAudio && <MusicPlayer
@@ -68,7 +93,16 @@ function App() {
         image={playAudioImage}
         show={audioShow}
       />
-    }
+    }   
+    
+    {/* {
+      playAudio && (
+        <Audioplayer
+          audio={playAudio}
+          audiotitle={playAudioTitle}
+        />
+      )
+    } */}
   </div>
  )
 }

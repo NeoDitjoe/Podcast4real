@@ -19,37 +19,10 @@ export default function StateContextProvider({ children }) {
     const [ userId, setUserId ] = useState(null)
     const [ loginContext, setLoginContext ] = useState(null)
     const [ audioShow, setAudioShow ] = useState(null)
-
-    useEffect(() => {
-        const session = supabase.auth.getSession()
-        setUser(session?.user)
-    
-        const unsubscribe = () => supabase.auth.onAuthStateChange((event, session) => {
-          switch(event) {
-            case 'SIGNED_IN':
-              setUser(session?.user)
-              
-              /**
-               * store the user id in a usestate then, the state is used to get spicific 
-               * users data and to also store the id to the database
-               */
-              setUserId(session.user.id)
-              
-              break;
-            case 'SIGNED_OUT':
-              setUser(null)
-              break;
-            default:  
-          }
-        })
-    
-        return () => {
-          unsubscribe()
-        }
-      }, [])
+    const [ audioLayout, setAudioLayout ] = useState(false)
 
     return (
-        <Context.Provider value = {{ audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
+        <Context.Provider value = {{ audioLayout, setAudioLayout, audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle }}>
             { children }
         </Context.Provider>
     )

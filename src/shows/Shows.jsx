@@ -12,8 +12,9 @@ export default function Shows(){
     const shows = useLoaderData()
 
     /* These are the different options e.g most played.. */
-    const mostPlayed = shows/* .slice(15, 25) */
+    const mostPlayed = shows.slice(0, 20)
     const favourites = favouritesState
+    const recommended = shows.slice(40, 60)
 
     /* these truncate the title */
     function truncateText(text, maxLength) {
@@ -76,6 +77,10 @@ export default function Shows(){
             {
                 user ? <div>
                     {slideShow("Most Played", mostPlayed, "most-played" )}
+
+                    {slideShow("Recommended", recommended, "most-played" )}
+
+
                     {favourites && <FavouritesShow
                         mapOver = {favourites}
                     />}

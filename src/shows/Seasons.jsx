@@ -10,7 +10,6 @@ export default function ShowDetails() {
 
     const shows = useLoaderData()
     const seasons = shows.seasons
-    const m= "season.episodes"
 
     return (
         <>
@@ -33,9 +32,8 @@ export default function ShowDetails() {
                     
                     return(
                         <div key={season.season}>
-                            <NavLink to={/* userId ?  */"episodes" /* : '/' */} style={{textDecoration: 'none'}}>
-                                
-                                {/* {console.log(season.episodes)} */}
+                            <NavLink to={"episodes"} style={{textDecoration: 'none'}}>
+
                                 <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
                                 <img className="img-season" src={season.image} onClick={() => {
                                     setEpisodesContext(season)

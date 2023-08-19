@@ -68,34 +68,13 @@ export function MusicPlayer({audio, title, image, show}){
                     
 
     return (
-        <div className={ audioLayout ? "component" : "min-component"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>
+        <div className={ audioLayout ? "component" : "min-component"}>
             <h2 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h2>
             <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
 
             <div className={audioLayout ? "audio-title-subtitle" : "min-audio-title-subtitle"}>
-                <h3 className={ audioLayout ? "audio-title" : "min-audio-title"} >{title}</h3>
+                <h3 className={ audioLayout ? "audio-title" : "min-audio-title"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>{title}</h3>
                 <p className= { audioLayout ? "subTitle" : "min-subTitle" }>{show}</p>
-            </div>
-
-            <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>
-
-                <input
-                        type="range"
-                        min="0"
-                        max={duration / 1000}
-                        default="0"
-                        value={seconds}
-                        className="timeline"
-                        onChange={(e) => {
-                        sound.seek([e.target.value]);
-                    }}
-                />
-
-                <div className="time">
-                    <p style={{background: 'white'}}>{currTime.min}:{currTime.sec}</p>
-                    <p style={{background: 'white'}}>{time.min}:{time.sec}</p>
-                </div>
-                
             </div>
 
             <button onClick={() => {
@@ -118,6 +97,7 @@ export function MusicPlayer({audio, title, image, show}){
                     .from('podcast4real')
                     .delete()
                     .eq('user__id', userId)
+                    .eq('title', title)
     
                     if(error){
                     console.error("what are doing error")
@@ -128,14 +108,36 @@ export function MusicPlayer({audio, title, image, show}){
 
                 HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
                 
-                }}>{ starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> }</button>
+                }} style={{ background: "transparent", border: 'none', marginBottom:"3%"}}>{ starColor ?  <img src={starred} style={{ width: '70%' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '70%', background: "transparent"}} /> : <img src={star} style={{ width: '70%', background: "transparent"}}/> }
+            </button>
+
+            <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>
+
+                <input
+                        type="range"
+                        min="0"
+                        max={duration / 1000}
+                        default="0"
+                        value={seconds}
+                        className="timeline"
+                        onChange={(e) => {
+                        sound.seek([e.target.value]);
+                    }}
+                />
+
+                <div className="time">
+                    <p style={{background: 'white'}}>{currTime.min}:{currTime.sec}</p>
+                    <p style={{background: 'white'}}>{time.min}:{time.sec}</p>
+                </div>
+                
+            </div>
 
             { audioLayout ? 
             
                 <div className="play-buttons">
 
                     <button className="playButton">
-                        <IconContext.Provider value={{ size: "3em", color: "white"}} >
+                        <IconContext.Provider value={{ className: "custom-icon" , size: "3em"}} >
                             <BiSkipPrevious />
                         </IconContext.Provider>
                     </button>
@@ -143,7 +145,7 @@ export function MusicPlayer({audio, title, image, show}){
                     {
                         !isPlaying ? (
                         <button className="playButton" onClick={playingButton}>
-                            <IconContext.Provider value={{ size: "3em", color: "white" }}>
+                            <IconContext.Provider value={{ size: "3em",className: "custom-icon"}}>
                                 <AiFillPlayCircle />
                             </IconContext.Provider>
                         </button>
@@ -152,7 +154,7 @@ export function MusicPlayer({audio, title, image, show}){
 
                         (
                         <button className="playButton" onClick={playingButton}>
-                            <IconContext.Provider value={{ size: "3em", color: "#27AE60" }}>
+                            <IconContext.Provider value={{ size: "3em", color: "#27AE60" ,className: "custom-icon" }}>
                                 <AiFillPauseCircle />
                             </IconContext.Provider>
                         </button>
@@ -160,32 +162,33 @@ export function MusicPlayer({audio, title, image, show}){
                     }
 
                     <button className="playButton">
-                        <IconContext.Provider value={{ size: "3em", color: "white" }}>
+                        <IconContext.Provider value={{ size: "3em", className: "custom-icon"}}>
                             <BiSkipNext />
                         </IconContext.Provider>
                     </button>
 
                 </div> :  
-            
+
+
+                !isPlaying ? (
                 <button className="playButton" onClick={playingButton}>
-                    <IconContext.Provider value={{ size: "1.5em", color: "white" }}>
+                    <IconContext.Provider value={{ size: "1.5em",className: "custom-icon"}}>
                         <AiFillPlayCircle />
                     </IconContext.Provider>
                 </button>
+
+                ) : 
+
+                (
+                <button className="playButton" onClick={playingButton}>
+                    <IconContext.Provider value={{ size: "1.5em", color: "#27AE60" ,className: "custom-icon" }}>
+                        <AiFillPauseCircle />
+                    </IconContext.Provider>
+                </button>
+                )
+
             }
 
-        </div>
-    )
-}
-
-export default function Audioplayer({ audio, audiotitle}){
-    return (
-        <div className="audioplayer">
-            <h4>{audiotitle}</h4>
-            
-            <audio controls autoPlay style={{ color: 'blue'}}>
-                <source src={audio} />
-            </audio>
         </div>
     )
 }

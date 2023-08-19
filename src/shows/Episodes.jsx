@@ -111,6 +111,7 @@ export default function Episodes(){
                                                             .from('podcast4real')
                                                             .delete()
                                                             .eq('user__id', userId)
+                                                            .eq('title', episode.title)
                                             
                                                             if(error){
                                                             console.error(error)
@@ -122,7 +123,7 @@ export default function Episodes(){
                                                         HandleAddingToFavourites(episode.title) ?  removeFavs()  : addfavourite() 
                                                     }}
 
-                                                    >{ starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } 
+                                                    >{  starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } 
                                             </button>
                                         </div>
                                     )

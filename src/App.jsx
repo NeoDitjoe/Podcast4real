@@ -10,7 +10,6 @@ import ShowsLayout from "./shows/Showslayout";
 import Seasons, { ShowsDetailsLoader } from "./shows/Seasons";
 import Episodes from "./shows/Episodes";
 import { useStateContext } from "./UseContext/UseContext";
-import Audioplayer from "./AudioPlayer/AudioPlayer";
 import AboutUs from "./More/About_us";
 import ContactUs from "./More/Contact_us";
 import Help from "./More/help";
@@ -23,7 +22,7 @@ const router = createBrowserRouter(
 
       <Route path='login'  element={<LoginIn />}/>
       <Route index  element={<Home/>}/>
-      <Route path='what'  element={<h1>hello again World</h1>}/>
+      <Route path='history'  element={<h1>hello again World</h1>}/>
 
       <Route path='more' element={<More/>}>
         <Route path="help" element={<Help/>}/>
@@ -71,8 +70,7 @@ function App() {
  return (
   <div className="app-body" onClick={() => collapseMenu ? setCollapseMenu(false) : ""}>
     
-    { audioLayout ? '' :<RouterProvider router={router}/>  }
-
+    { audioLayout ? '' : <RouterProvider router={router}/>  }
 
     {
       playAudio && <MusicPlayer
@@ -81,16 +79,8 @@ function App() {
         image={playAudioImage}
         show={audioShow}
       />
-    }   
-    
-    {/* {
-      playAudio && (
-        <Audioplayer
-          audio={playAudio}
-          audiotitle={playAudioTitle}
-        />
-      )
-    } */}
+    }  
+
   </div>
  )
 }

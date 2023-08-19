@@ -11,10 +11,10 @@ export function NavBar(){
         return(
             <div className="nav">
                 <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
-                <NavLink to='/'>home</NavLink>
-                <NavLink to={user ? 'what' : "login"}>what</NavLink>
-                <NavLink to='more'>more</NavLink>
-                { user ? <NavLink to={ user ? 'shows': 'login'}>shows</NavLink> : ''} 
+                <NavLink to='/'>Home</NavLink>
+                { user ? <NavLink to={ user ? 'shows': 'login'}>Shows</NavLink> : ''} 
+                <NavLink to={user ? 'history' : "login"}>History</NavLink>
+                <NavLink to='more'>More</NavLink>
             </div>
         )
     }

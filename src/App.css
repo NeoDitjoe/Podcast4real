@@ -132,7 +132,7 @@ margin: 1%;
       transform: translateX(0);
     }
     to {
-      transform: translateX(-100%); /* Adjust this value to determine how much it scrolls */
+      transform: translateX(-130%); /* Adjust this value to determine how much it scrolls */
     }
   }
 
@@ -292,12 +292,23 @@ footer p{
 
 /* Audio Player */
 
+.blur{
+    width: 85%;
+    height: 80vh;
+    filter: blur(30px);
+    opacity: 2;
+    transform: scale(1.3);
+}
+
 .component {
-  background-color: white;
-  padding: 1%;
-  border: 0.1px solid black;
-  text-align: center;
-  height: 100vh;
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    background: transparent;
+    text-align: center;
+    border: 0.1px solid black;
+
 }
 
 .min-component{
@@ -316,7 +327,9 @@ footer p{
 }
 
 .playing-now{
-    background-color: white;
+    color: white;
+    background-color: transparent;
+    margin-top: 3%;
 }
 
 .min-playing-now{
@@ -337,7 +350,7 @@ footer p{
 }
 
 .playButton {
-  background-color: white;
+  background-color: transparent;
   border: none;
   align-items: center;
   justify-content: center;
@@ -345,7 +358,7 @@ footer p{
 }
 
 .audio-title{
-    background-color: white;
+    background-color: transparent;
     height: 9vh;
     overflow-y: hidden;
     margin-bottom: 16px;
@@ -355,15 +368,15 @@ footer p{
     background-color: white;
     font-size: 15px;
     display: inline-block;
-    animation: scroll 30s linear infinite; 
+    animation: scroll 5s linear infinite; 
     /* white-space: nowrap;
     width: 1px; */
 }
 
 .subTitle {
   margin-top: -1em;
-  color: #4f4f4f;
-  background-color: white;
+  color: white;
+  background-color: transparent;
 }
 
 .min-subTitle {
@@ -374,16 +387,16 @@ footer p{
   
 }
 
-/* .audio-title-subtitle{
-    height: vh;
-    overflow-y: scroll;
-} */
-
 .min-audio-title-subtitle{
     background-color: white;
     width: 160%;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.audio-title-subtitle{
+    color: white;
+    background-color: transparent;
 }
 
 .time {
@@ -393,11 +406,11 @@ footer p{
   justify-content: space-between;
   color: #828282;
   font-size: smaller;
-  background-color: white;
+  background-color: transparent;
 }
 
 .time-adjust{
-    background-color: white;
+    background-color: transparent;
 }
 
 .min-time-adjust{
@@ -406,8 +419,8 @@ footer p{
 }
 
 .timeline {
-  width: 100%;
-  background-color: #aac0b36a;
+  width: 88%;
+  background-color: transparent;
 }
 
 input[type="range"] {
@@ -417,14 +430,14 @@ input[type="range"] {
 .play-buttons {
     text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: transparent;
 }
 
 .custom-icon {
     /* width: 3em; */
-    color: gray; /* Icon color */
-    background-color: white; /* Background color */
+    color: white; /* Icon color */
+    background-color: transparent; /* Background color */
     /* You can add more styles here */
   }
 

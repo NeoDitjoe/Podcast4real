@@ -68,127 +68,128 @@ export function MusicPlayer({audio, title, image, show}){
                     
 
     return (
-        <div className={ audioLayout ? "component" : "min-component"}>
-            <h3 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h3>
-            <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
+        <div>
+            { audioLayout ? <img className= "blur" src={image}  /> : ''}
+            <div className={ audioLayout ? "component" : "min-component"}>
+                <h3 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h3>
+                <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
 
-            <div className={audioLayout ? "audio-title-subtitle" : "min-audio-title-subtitle"}>
-                <h3 className={ audioLayout ? "audio-title" : "min-audio-title"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>{title}</h3>
-                <p className= { audioLayout ? "subTitle" : "min-subTitle" }>{show}</p>
-            </div>
-
-            <button onClick={() => {
-                setStarColor(!starColor)
-
-                const addfavourite = async () => {
-                    const { data, error} = await supabase
-                        .from('podcast4real')
-                        .upsert({
-                            title: title,
-                            audio: audio,
-                            image: image,
-                            shows: title,
-                            user__id: userId
-                        })
-                }
-
-                const removeFavs = async() => {
-                    const { data, error } = await supabase
-                    .from('podcast4real')
-                    .delete()
-                    .eq('user__id', userId)
-                    .eq('title', title)
-    
-                    if(error){
-                    console.error("what are doing error")
-                    } else{
-                    console.log(data)
-                    }
-                }
-
-                HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
-                
-                }} style={{ background: "transparent", border: 'none'}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
-            </button>
-
-            <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>
-
-                <input
-                        type="range"
-                        min="0"
-                        max={duration / 1000}
-                        default="0"
-                        value={seconds}
-                        className="timeline"
-                        onChange={(e) => {
-                        sound.seek([e.target.value]);
-                    }}
-                />
-
-                <div className="time">
-                    <p style={{background: 'white'}}>{currTime.min}:{currTime.sec}</p>
-                    <p style={{background: 'white'}}>{time.min}:{time.sec}</p>
+                <div className={audioLayout ? "audio-title-subtitle" : "min-audio-title-subtitle"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>
+                    <h3 className={ audioLayout ? "audio-title" : "min-audio-title"}>{title}</h3>
+                    <p className= { audioLayout ? "subTitle" : "min-subTitle" }>{show}</p>
                 </div>
-                
-            </div>
 
-            { audioLayout ? 
-            
-                <div className="play-buttons">
+                <button onClick={() => {
+                    setStarColor(!starColor)
 
-                    <button className="playButton">
-                        <IconContext.Provider value={{ className: "custom-icon" , size: "3em"}} >
-                            <BiSkipPrevious />
-                        </IconContext.Provider>
-                    </button>
-                    
-                    {
-                        !isPlaying ? (
-                        <button className="playButton" onClick={playingButton}>
-                            <IconContext.Provider value={{ size: "3em",className: "custom-icon"}}>
-                                <AiFillPlayCircle />
-                            </IconContext.Provider>
-                        </button>
-
-                        ) : 
-
-                        (
-                        <button className="playButton" onClick={playingButton}>
-                            <IconContext.Provider value={{ size: "3em", color: "#27AE60" ,className: "custom-icon" }}>
-                                <AiFillPauseCircle />
-                            </IconContext.Provider>
-                        </button>
-                        )
+                    const addfavourite = async () => {
+                        const { data, error} = await supabase
+                            .from('podcast4real')
+                            .upsert({
+                                title: title,
+                                audio: audio,
+                                image: image,
+                                shows: title,
+                                user__id: userId
+                            })
                     }
 
-                    <button className="playButton">
-                        <IconContext.Provider value={{ size: "3em", className: "custom-icon"}}>
-                            <BiSkipNext />
+                    const removeFavs = async() => {
+                        const { data, error } = await supabase
+                        .from('podcast4real')
+                        .delete()
+                        .eq('user__id', userId)
+                        .eq('title', title)
+        
+                        if(error){
+                        console.error("what are doing error")
+                        } else{
+                        console.log(data)
+                        }
+                    }
+
+                    HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
+                    
+                    }} style={{ background: "transparent", border: 'none'}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
+                </button>
+
+                <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>
+
+                    <input
+                            type="range"
+                            min="0"
+                            max={duration / 1000}
+                            default="0"
+                            value={seconds}
+                            className="timeline"
+                            onChange={(e) => {
+                            sound.seek([e.target.value]);
+                        }}
+                    />
+
+                    <div className="time">
+                        <p style={{background: 'transparent', color:'white'}}>{currTime.min}:{currTime.sec}</p>
+                        <p style={{background: 'transparent', color:'white'}}>{time.min}:{time.sec}</p>
+                    </div>
+                    
+                </div>
+
+                { audioLayout ? 
+                
+                    <div className="play-buttons">
+
+                        <button className="playButton">
+                            <IconContext.Provider value={{ className: "custom-icon" , size: "3em"}} >
+                                <BiSkipPrevious />
+                            </IconContext.Provider>
+                        </button>
+                        
+                        {
+                            !isPlaying ? (
+                            <button className="playButton" onClick={playingButton}>
+                                <IconContext.Provider value={{ size: "3em",className: "custom-icon"}}>
+                                    <AiFillPlayCircle />
+                                </IconContext.Provider>
+                            </button>
+
+                            ) : 
+
+                            (
+                            <button className="playButton" onClick={playingButton}>
+                                <IconContext.Provider value={{ size: "3em", color: "#27AE60" ,className: "custom-icon" }}>
+                                    <AiFillPauseCircle />
+                                </IconContext.Provider>
+                            </button>
+                            )
+                        }
+
+                        <button className="playButton">
+                            <IconContext.Provider value={{ size: "3em", className: "custom-icon"}}>
+                                <BiSkipNext />
+                            </IconContext.Provider>
+                        </button>
+
+                    </div> :  
+
+
+                    !isPlaying ? (
+                    <button className="playButton" onClick={playingButton}>
+                        <IconContext.Provider value={{ size: "2.5em",className: "custom-icon" ,color: "gray" }}>
+                            <AiFillPlayCircle />
                         </IconContext.Provider>
                     </button>
 
-                </div> :  
+                    ) : 
 
-
-                !isPlaying ? (
-                <button className="playButton" onClick={playingButton}>
-                    <IconContext.Provider value={{ size: "2.5em",className: "custom-icon"}}>
-                        <AiFillPlayCircle />
-                    </IconContext.Provider>
-                </button>
-
-                ) : 
-
-                (
-                <button className="playButton" onClick={playingButton}>
-                    <IconContext.Provider value={{ size: "2.5em", color: "#27AE60" ,className: "custom-icon" }}>
-                        <AiFillPauseCircle />
-                    </IconContext.Provider>
-                </button>
-                )
-
-            }
-
+                    (
+                    <button className="playButton" onClick={playingButton}>
+                        <IconContext.Provider value={{ size: "2.5em", color: "#27AE60" ,className: "custom-icon" }}>
+                            <AiFillPauseCircle />
+                        </IconContext.Provider>
+                    </button>
+                    )
+                }
+            </div>
         </div>
     )
 }

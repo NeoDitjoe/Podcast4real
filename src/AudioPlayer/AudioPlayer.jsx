@@ -69,7 +69,7 @@ export function MusicPlayer({audio, title, image, show}){
 
     return (
         <div className={ audioLayout ? "component" : "min-component"}>
-            <h2 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h2>
+            <h3 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h3>
             <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
 
             <div className={audioLayout ? "audio-title-subtitle" : "min-audio-title-subtitle"}>

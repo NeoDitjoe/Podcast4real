@@ -9,24 +9,30 @@ export function NavBar(){
 
     function navbar(){
         return(
-            <div className="nav">
-                <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
-                <NavLink to='/'>Home</NavLink>
-                { user ? <NavLink to={ user ? 'shows': 'login'}>Shows</NavLink> : ''} 
-                <NavLink to={user ? 'history' : "login"}>History</NavLink>
-                <NavLink to='more'>More</NavLink>
-            </div>
+            <>
+                {collapseMenu ? <img style={{ width: "50%", backgroundColor: "transparent"}} src={logo} alt="logo"></img> : ""}
+                <div className="nav">
+                    
+                    <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
+                    <NavLink to='/'>Home</NavLink>
+                    { user ? <NavLink to={ user ? 'shows': 'login'}>Shows</NavLink> : ''} 
+                    <NavLink to={user ? 'history' : "login"}>History</NavLink>
+                    <NavLink to='more'>More</NavLink>
+                </div>
+            
+            </>
         )
     }
     return (
         <>
             <nav>  
                 {
-                    window.matchMedia("(max-width: 769px)").matches ? 
+                    window.matchMedia("(max-width: 770px)").matches ? 
                     <div className="max-width-nav">
-                        <img style={{backgroundColor: "black"}} src={menubar} alt="menu" onClick={() => {setCollapseMenu(!collapseMenu)}}></img> 
+                        <img style={{backgroundColor: "transparent", maxWidth:'10%', height:'7vh'}} src={menubar} alt="menu" onClick={() => {setCollapseMenu(!collapseMenu)}}></img> 
                         
-                        {collapseMenu ? navbar() : <img style={{ width: "17%", backgroundColor: "black"}} src={logo} alt="logo"></img>} 
+                        
+                        {collapseMenu ? '' : <img style={{ width: "17%", backgroundColor: "transparent"}} src={logo} alt="logo"></img>}
                         </div>
                         :  
                     <div>{navbar()}</div>
@@ -36,10 +42,10 @@ export function NavBar(){
             </nav>
 
             <div className="nav-outlet">
-                <Outlet/>
+                { collapseMenu ? ' ' : <Outlet/>}
             </div>
             
-            <Footer/>
+            { collapseMenu ? ' ' : <Footer/>}
       </>
     )
 }

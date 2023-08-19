@@ -78,7 +78,7 @@ export default function Shows(){
                 user ? <div>
                     {slideShow("Most Played", mostPlayed, "most-played" )}
 
-                    {slideShow("Recommended", recommended, "most-played" )}
+                    {slideShow("Recommended", recommended, "most-played-opps" )}
 
 
                     {favourites && <FavouritesShow

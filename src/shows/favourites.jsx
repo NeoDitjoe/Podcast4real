@@ -39,7 +39,10 @@ export default function FavouritesShow({mapOver}){
                                         }, 200);
                                     }}>
                                     <img className="img-show" src={show.image}></img>
-                                    <p>{show.shows} <br></br>{new Date(show.created_at).toString().slice(3, 21)}</p>
+                                    <div className="shows-scroll">
+                                        <p className="shows-scroll-text">{show.shows} </p> 
+                                    </div>
+                                    <p>{new Date(show.created_at).toString().slice(3, 21)}</p>
                                     <h6 style={{paddingTop: "0"}}>{truncateText(show.title , 15)}</h6>
                                 </Link>
                             </div>

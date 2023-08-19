@@ -112,8 +112,29 @@ margin: 1%;
 
 .each-show{
     width: auto;
-    margin: 1%;
+    margin-bottom: 1%;
 }
+
+.shows-scroll{
+    white-space: nowrap;
+    width: 140px;
+    overflow: hidden;
+}
+
+.shows-scroll-text{
+
+    display: inline-block;
+    animation: scroll 30s linear infinite; 
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%); /* Adjust this value to determine how much it scrolls */
+    }
+  }
 
 .img-show{
     width: 148px;
@@ -326,12 +347,15 @@ footer p{
 .audio-title{
     background-color: white;
     height: 9vh;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    margin-bottom: 16px;
 }
 
 .min-audio-title{
     background-color: white;
     font-size: 15px;
+    display: inline-block;
+    animation: scroll 30s linear infinite; 
     /* white-space: nowrap;
     width: 1px; */
 }
@@ -347,6 +371,7 @@ footer p{
   color: #4f4f4f;
   background-color: white;
   font-size: 10px;
+  
 }
 
 /* .audio-title-subtitle{
@@ -358,7 +383,7 @@ footer p{
     background-color: white;
     width: 160%;
     white-space: nowrap;
-    overflow-y: scroll;
+    overflow: hidden;
 }
 
 .time {
@@ -402,3 +427,4 @@ input[type="range"] {
     background-color: white; /* Background color */
     /* You can add more styles here */
   }
+

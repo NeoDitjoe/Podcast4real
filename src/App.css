@@ -171,8 +171,8 @@ margin: 1%;
 }
 
 .episode-title p:nth-child(1) {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 .episode-title p:nth-child(2) {
     color: white;
@@ -208,7 +208,7 @@ margin: 1%;
 }
 
 .image-titles{
-    margin-bottom: 20%;
+    margin-bottom: 150px;
 }
 
 /* footer */
@@ -281,7 +281,7 @@ footer p{
 
 .min-component{
     background-color: white;
-    padding: 2%;
+    padding: 5px;
     border: 0.1px solid black;
     height: 12vh;
     text-align: center;
@@ -320,6 +320,7 @@ footer p{
   border: none;
   align-items: center;
   justify-content: center;
+  
 }
 
 .audio-title{
@@ -355,7 +356,7 @@ footer p{
 
 .min-audio-title-subtitle{
     background-color: white;
-    width: 160px;
+    width: 160%;
     white-space: nowrap;
     overflow-y: scroll;
 }

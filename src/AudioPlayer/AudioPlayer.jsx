@@ -108,7 +108,7 @@ export function MusicPlayer({audio, title, image, show}){
 
                 HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
                 
-                }} style={{ background: "transparent", border: 'none', marginBottom:"3%"}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
+                }} style={{ background: "transparent", border: 'none'}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
             </button>
 
             <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>
@@ -172,7 +172,7 @@ export function MusicPlayer({audio, title, image, show}){
 
                 !isPlaying ? (
                 <button className="playButton" onClick={playingButton}>
-                    <IconContext.Provider value={{ size: "1.5em",className: "custom-icon"}}>
+                    <IconContext.Provider value={{ size: "2.5em",className: "custom-icon"}}>
                         <AiFillPlayCircle />
                     </IconContext.Provider>
                 </button>
@@ -181,7 +181,7 @@ export function MusicPlayer({audio, title, image, show}){
 
                 (
                 <button className="playButton" onClick={playingButton}>
-                    <IconContext.Provider value={{ size: "1.5em", color: "#27AE60" ,className: "custom-icon" }}>
+                    <IconContext.Provider value={{ size: "2.5em", color: "#27AE60" ,className: "custom-icon" }}>
                         <AiFillPauseCircle />
                     </IconContext.Provider>
                 </button>

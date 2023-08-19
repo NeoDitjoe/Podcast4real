@@ -124,7 +124,7 @@ export default function Episodes(){
                                                         HandleAddingToFavourites(episode.title) ?  removeFavs()  : addfavourite() 
                                                     }}
 
-                                                    >{  starColor ?  <img src={starred} style={{ width: '25px',backgroundColor:'transparent' }}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '25px', backgroundColor:'transparent'}} /> : <img src={star} style={{ width: '25px', backgroundColor:'transparent'}}/> } 
+                                                    >{  starColor ?  <img src={starred} style={{ width: '20px',backgroundColor:'transparent' }}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '20px', backgroundColor:'transparent'}} /> : <img src={star} style={{ width: '20px', backgroundColor:'transparent'}}/> } 
                                             </button>
                                         </div>
                                     )

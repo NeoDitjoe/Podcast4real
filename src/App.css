@@ -63,6 +63,8 @@ nav{
     /* position: sticky;
     top: 0; */
     z-index: 2;
+    max-width: 100%;
+    max-height: 13vh;
 }
 
 nav a{
@@ -92,6 +94,12 @@ nav a.active {
     justify-content: space-between;
 }
 
+.max-width-nav img {
+    max-height: 6vh;
+
+}
+
+
 /* Shows */
 
 .show{
@@ -99,6 +107,10 @@ nav a.active {
     overflow-y: hidden;
     display: flex;
     gap: 10px;
+}
+
+.shows-layout{
+margin: 1%;
 }
 
 .each-show{
@@ -194,8 +206,6 @@ footer p{
 
 @media only screen and (max-width: 768px){
     .more{
-        width: 104.1%;
-        margin-left: -2%;
         padding: 5%;
     }
 }
@@ -235,7 +245,6 @@ footer p{
   background-color: white;
   padding: 6%;
   border: 0.1px solid black;
-  height: 100vh;
   text-align: center;
 }
 
@@ -284,11 +293,15 @@ footer p{
 
 .audio-title{
     background-color: white;
+    height: 9vh;
+    overflow-y: scroll;
 }
 
 .min-audio-title{
     background-color: white;
     font-size: 15px;
+    /* white-space: nowrap;
+    width: 1px; */
 }
 
 .subTitle {
@@ -304,8 +317,16 @@ footer p{
   font-size: 10px;
 }
 
+/* .audio-title-subtitle{
+    height: vh;
+    overflow-y: scroll;
+} */
+
 .min-audio-title-subtitle{
     background-color: white;
+    width: 160px;
+    white-space: nowrap;
+    overflow-y: scroll;
 }
 
 .time {

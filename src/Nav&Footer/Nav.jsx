@@ -25,7 +25,8 @@ export function NavBar(){
                     window.matchMedia("(max-width: 769px)").matches ? 
                     <div className="max-width-nav">
                         <img style={{backgroundColor: "black"}} src={menubar} alt="menu" onClick={() => {setCollapseMenu(!collapseMenu)}}></img> 
-                        <img style={{ width: "17%", backgroundColor: "black"}} src={logo} alt="logo"></img>
+                        
+                        {collapseMenu ? navbar() : <img style={{ width: "17%", backgroundColor: "black"}} src={logo} alt="logo"></img>} 
                         </div>
                         :  
                     <div>{navbar()}</div>

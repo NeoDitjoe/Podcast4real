@@ -13,17 +13,24 @@ export default function Footer(){
             <NavLink>Advertising</NavLink>
             <NavLink>Privacy</NavLink>
             <NavLink>Accessibility</NavLink>
+            
+            
+            <div>
+                <h4 style={{color: 'white', marginTop: '10%'}}>Contact us</h4>
+                <div style={{display:'flex', gap: '3%'}}>
+                    
+                    <a href='https://github.com/NeoDitjoe'><img src={github} alt='githubicon'></img></a>
+                    <a href='https://www.linkedin.com/in/neo-ditjoe-26019b26a/'><img src={linkedin} alt='linkedInicon'></img></a>
+                    <a href='mailto:ditjoeneo@gmail.com'><img src={gmail} alt='gmail'></img></a>
+                </div>
 
-            <a href='https://github.com/NeoDitjoe'><img src={github} alt='githubicon'></img></a>
-            <a href='https://www.linkedin.com/in/neo-ditjoe-26019b26a/'><img src={linkedin} alt='linkedInicon'></img></a>
-            <a href='mailto:ditjoeneo@gmail.com'><img src={gmail} alt='gmail'></img></a>
+                <h6 style={{color: "gray", marginTop: "5%"}}>Email:</h6>
+                <p style={{color: "gray", marginTop: "1%"}}> ditjoeneo@gmail.com</p>
 
-            <h6 style={{color: "gray", marginTop: "5%"}}>Email:</h6>
-            <p style={{color: "gray", marginTop: "-3%"}}> ditjoeneo@gmail.com</p>
-
-            <h6 style={{color: "gray", marginTop: "5%"}}>Phone & WhatApp:</h6>
-            <p style={{color: "gray", marginTop: "-3%"}}>066 026 8606</p>
-
+                <h6 style={{color: "gray", marginTop: "5%"}}>Phone & WhatApp:</h6>
+                <p style={{color: "gray", marginTop: "1%"}}>066 026 8606</p>
+            </div>
+            
             <p>© 2023 Podcast4real. All rights reserved.</p>
         </footer>
     )

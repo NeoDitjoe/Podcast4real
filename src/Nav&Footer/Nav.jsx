@@ -12,7 +12,6 @@ export function NavBar(){
             <>
                 {collapseMenu ? <img style={{ width: "50%", backgroundColor: "transparent"}} src={logo} alt="logo"></img> : ""}
                 <div className="nav">
-                    
                     <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
                     <NavLink to='/'>Home</NavLink>
                     { user ? <NavLink to={ user ? 'shows': 'login'}>Shows</NavLink> : ''} 
@@ -35,7 +34,10 @@ export function NavBar(){
                         {collapseMenu ? '' : <img style={{ width: "17%", backgroundColor: "transparent"}} src={logo} alt="logo"></img>}
                         </div>
                         :  
-                    <div>{navbar()}</div>
+                    <div className="desktop-nav"> 
+                        <img style={{ width: "100%", backgroundColor: "black"}} src={logo} alt="logo"></img>
+                        {navbar()}
+                    </div>
                 }  
 
                 {collapseMenu ? navbar() : ''}             

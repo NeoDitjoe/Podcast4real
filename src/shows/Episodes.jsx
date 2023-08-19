@@ -56,13 +56,14 @@ export default function Episodes(){
                     <ScrollToTop/>
                     {   episodesContext ?
                         <>
-                                    
-                            <div style={{background: 'transparent',padding:'3%', zIndex:'40px', textAlign:'center'}}>
-                                <img src={episodesContext.image} alt="cover-art" style={{filter: "blur(40px)", width: '60%', zIndex:'-10px'}}/>
 
-                                <img src={episodesContext.image} alt="cover-art" style={{ width: '42%'}}/>
-                                <h2 style={{color:"white", background: 'transparent'}}>{episodesContext.title}</h2>
-                                <p style={{ background:'transparent', color:'white', fontSize:'80%'}}><img src={logo} style={{ background:'transparent', width:'13%'}}></img> podcast4real</p>
+                            <div className="image-titles">
+                                <div className="episode-top"><img src={episodesContext.image} alt="cover-art" className="img-blur"/><img src={episodesContext.image} alt="cover-art" className="img-episode" /></div>
+
+                                <div className="content">
+                                    <h1 className="episode-title-s">{episodesContext.title}</h1>
+                                    <p style={{ background:'transparent', color:'white', fontSize:'80%'}}><img src={logo} style={{ background:'transparent', width:'19%'}}></img> podcast4real</p>
+                                </div>
                             </div>
 
                             {
@@ -123,7 +124,7 @@ export default function Episodes(){
                                                         HandleAddingToFavourites(episode.title) ?  removeFavs()  : addfavourite() 
                                                     }}
 
-                                                    >{  starColor ?  <img src={starred} style={{ width: '70%'}}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '70%'}} /> : <img src={star} style={{ width: '70%'}}/> } 
+                                                    >{  starColor ?  <img src={starred} style={{ width: '25px',backgroundColor:'transparent' }}/> : HandleAddingToFavourites(episode.title)  ? <img src={starred} style={{ width: '25px', backgroundColor:'transparent'}} /> : <img src={star} style={{ width: '25px', backgroundColor:'transparent'}}/> } 
                                             </button>
                                         </div>
                                     )

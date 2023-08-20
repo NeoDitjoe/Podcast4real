@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
 import ScrollToTop from "../scrollToTop/ScrollToTop"
 import './StyleHome.css'
+import firstImag from '../assets/firstImg.jpg'
 
 /* material UI */
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -40,18 +41,18 @@ export default function Home(){
 
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>
                         <Item style={{backgroundColor:'rgb(255, 160, 78)' ,boxShadow:'none'}}>
-                            <img src='https://i.pinimg.com/564x/0b/61/aa/0b61aa0a1439e7eb7e2427930c20253f.jpg' alt="image" className="firstImag" />
+                            <img src={firstImag} alt="image" className="firstImag" />
                         </Item>
                     </Grid>
 
-                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>
-                        <Item style={{backgroundColor:'rgb(255, 160, 78)', boxShadow:'none'}}>
-
+                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
+                        <Item style={{backgroundColor:'powderblue', boxShadow:'none'}}>
+                            <p  style={{backgroundColor:'powderblue'}}>k</p>
                         </Item>
                     </Grid>
 
-                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>
-                        <Item style={{backgroundColor:'rgb(255, 160, 78)', boxShadow:'none'}}>
+                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
+                        <Item style={{backgroundColor:'powderblue', boxShadow:'none'}}>
 
                         </Item>
                     </Grid>

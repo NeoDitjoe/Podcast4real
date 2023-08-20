@@ -74,7 +74,7 @@ export default function Home(){
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>
                         <Item style={{backgroundColor:'rgb(255, 160, 78)', boxShadow:'none'}}>
                             <h1 /* style={{backgroundColor:'rgb(255, 160, 78)', fontSize:'400%', color:'black'}} */>Lorem ipsum, dolor consectetur adipisicing elit!</h1>
-                            <p>We have to ensure our way to the top</p>
+                            <p>We have to create our way to the top</p>
 
                             <p>{ user ? <NavLink to={'shows'} >Go to Shows</NavLink>  :   <NavLink to={"/login"} > Log in</NavLink>}</p>
                         </Item>

@@ -16,7 +16,7 @@ export default function Footer(){
             
             
             <div>
-                <h4 style={{color: 'white', marginTop: '10%'}}>Contact us</h4>
+                <h4 style={{color: 'white', marginTop: '10%'}}>Get in touch</h4>
                 <div style={{display:'flex', gap: '3%'}}>
                     
                     <a href='https://github.com/NeoDitjoe'><img src={github} alt='githubicon'></img></a>
@@ -28,7 +28,7 @@ export default function Footer(){
                 <p style={{color: "gray", marginTop: "1%"}}> ditjoeneo@gmail.com</p>
 
                 <h6 style={{color: "gray", marginTop: "5%"}}>Phone & WhatApp:</h6>
-                <p style={{color: "gray", marginTop: "1%"}}>066 026 8606</p>
+                <p style={{color: "gray", marginTop: "1%"}}>+27 66 026 8606</p>
             </div>
             
             <p>© 2023 Podcast4real. All rights reserved.</p>

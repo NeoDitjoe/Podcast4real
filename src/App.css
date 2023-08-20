@@ -6,11 +6,6 @@
     background-color: rgb(29, 29, 29);
 }
 
-.home{
-    background-color: white;
-    margin: 2%;
-}
-
 ::-webkit-scrollbar { 
     width: 0.3em;
     height: 0.9px;
@@ -78,9 +73,7 @@
 }
 
 nav{
-
     padding: 2%;
-
 }
 
 nav a{
@@ -101,11 +94,11 @@ nav a.active {
 }
 
 
-.nav-outlet{
-   /* margin-top: 5%; */
+/* .nav-outlet{
+   margin-top: 5%;
    
        
-}
+} */
 
 .max-width-nav{
     background-color: none;
@@ -113,7 +106,6 @@ nav a.active {
     flex-direction: row;
     justify-content: space-between;
 }
-
 
 
 /* Shows */

@@ -98,15 +98,14 @@ export default function Home(){
                     </Grid>
                     
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
-                        <Item style={{backgroundColor:'powderblue'}}>
-                            <div style={{ border:'solid 2px white', borderRadius:'10px', padding:'2%', backgroundColor:'powderblue', margin:'10%', boxShadow:'none'}}>
+                        <Item style={{backgroundColor:'powderblue', boxShadow:'none'}}>
+                            <div style={{ border:'solid 2px white', borderRadius:'10px', padding:'2%', backgroundColor:'powderblue', margin:'10%'}}>
                                 <h1 style={{background: 'transparent', color: "white"}}>Lorem ipsum dolor sit amet consectetur.</h1>
                                 <p style={{width:'80%', padding: '5%', color: "white", marginLeft:'10%', fontSize:'120%'}}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur illum architecto ducimus nam temporibus nihil pariatur suscipit distinctio eos? Blanditiis nostrum deserunt, harum nesciunt mollitia nam? Sequi consequatur quia pariatur quas eum quidem minus dicta delectus voluptatum consectetur quis adipisci tenetur, excepturi est praesentium porro quod blanditiis illo, voluptate cupiditate?</p>
                                 <NavLink to={'more/contact_us'} style={{ background:'rgb(255, 160, 78)', color: 'white'}}>Get in Touch</NavLink>
                             </div>
                         </Item>
                     </Grid>
-                    
                 </Grid>
             </Box>
         </div>

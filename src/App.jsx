@@ -21,7 +21,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<NavBar/>}>
 
       <Route path='login'  element={<LoginIn />}/>
-      <Route index  element={<Home/>}/>
+      <Route index  element={<Home/>} loader={Showsloader}/>
       <Route path='history'  element={<h1>hello again World</h1>}/>
 
       <Route path='more' element={<More/>}>

@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useLoaderData } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
 import ScrollToTop from "../scrollToTop/ScrollToTop"
 import './StyleHome.css'
 import firstImag from '../assets/firstImg.jpg'
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 /* material UI */
 import { experimentalStyled as styled } from '@mui/material/styles';
@@ -21,6 +22,46 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function Home(){
 
     const { user } = useStateContext()
+    let shows = useLoaderData()
+    
+    function sliceShows(){
+        try {
+            return{ 
+                shows: shows.slice(40, 50),
+            }
+            
+        } catch (error) {
+            console.log(error)
+            return <ErrorMessage/>
+        }
+    }
+
+    function slideShow(title ,titleStyle){
+        try {
+            return(
+                <>
+                    {/* <h5 className={titleStyle}>{title}</h5> */}
+                    <div className="show" style={{background:'transparent', gap:'0'}}>
+                        
+                        {  
+                            sliceShows().shows.map((show) => {
+                                return (
+                                    <NavLink to={user ? '' : 'login'} key={show.id} style={{}}>
+                                
+                                        <img className="img-show" src={show.image}></img>
+                                    </NavLink>
+                                )
+                            })
+                        }
+                    </div>
+
+                </>
+            )
+        } catch (error) {
+            console.log(error)
+            return <ErrorMessage/>
+        }
+    }
 
     return(
         <div >      <ScrollToTop/>
@@ -46,18 +87,26 @@ export default function Home(){
                     </Grid>
 
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
-                        <Item style={{backgroundColor:'powderblue', boxShadow:'none'}}>
-                            <p  style={{backgroundColor:'powderblue'}}>k</p>
-                        </Item>
-                    </Grid>
-
-                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
-                        <Item style={{backgroundColor:'powderblue', boxShadow:'none'}}>
-
+                        <Item style={{backgroundColor:'powderblue',boxShadow:'none'}}>
+                            <div style={{ border:'solid 2px white', borderRadius:'10px', padding:'2%', backgroundColor:'powderblue', margin:'10%'}}>
+                                <h1 style={{background: 'transparent', color: "white"}}>Lorem ipsum dolor sit amet consectetur.</h1>
+                                {slideShow()}
+                                <p style={{width:'80%', padding: '4.4%', color: "white", marginLeft:'10%', fontSize:'120%'}}> nesciunt mollitia nam? , voluptate cupiditate?</p>
+                                <NavLink style={{ background:'rgb(255, 160, 78)', color: 'white'}} to={user? "shows" : "login"}>{user? 'View Shows' : 'Login to view shows'}</NavLink>
+                            </div>
                         </Item>
                     </Grid>
                     
-            
+                    <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'powderblue'}}>
+                        <Item style={{backgroundColor:'powderblue'}}>
+                            <div style={{ border:'solid 2px white', borderRadius:'10px', padding:'2%', backgroundColor:'powderblue', margin:'10%', boxShadow:'none'}}>
+                                <h1 style={{background: 'transparent', color: "white"}}>Lorem ipsum dolor sit amet consectetur.</h1>
+                                <p style={{width:'80%', padding: '5%', color: "white", marginLeft:'10%', fontSize:'120%'}}>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur illum architecto ducimus nam temporibus nihil pariatur suscipit distinctio eos? Blanditiis nostrum deserunt, harum nesciunt mollitia nam? Sequi consequatur quia pariatur quas eum quidem minus dicta delectus voluptatum consectetur quis adipisci tenetur, excepturi est praesentium porro quod blanditiis illo, voluptate cupiditate?</p>
+                                <NavLink to={'more/contact_us'} style={{ background:'rgb(255, 160, 78)', color: 'white'}}>Get in Touch</NavLink>
+                            </div>
+                        </Item>
+                    </Grid>
+                    
                 </Grid>
             </Box>
         </div>

@@ -3,7 +3,7 @@ import { NavLink, Outlet, useLoaderData, useParams } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import supabase from "../Auth/supabase"
-import ErrorMessage from "../AudioPlayer/ErrorMessage/ErrorMessage"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 export default function ShowDetails() {
     const { setEpisodesContext, setShowsContext, userId } = useStateContext()

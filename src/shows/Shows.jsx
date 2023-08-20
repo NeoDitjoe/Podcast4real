@@ -3,7 +3,7 @@ import supabase from "../Auth/supabase"
 import { useEffect, useState } from "react"
 import { useStateContext } from "../UseContext/UseContext"
 import FavouritesShow from "./favourites"
-import ErrorMessage from "../AudioPlayer/ErrorMessage/ErrorMessage"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 export default function Shows(){
 
@@ -16,7 +16,7 @@ export default function Shows(){
     function sliceShows(){
         try {
             return{ 
-                mostPlayed: shows.slice(0, 20),
+                mostPlayed: shows.slice(40, 50),
                 favourites: favouritesState,
                 recommended: shows.slice(40, 60),
                 sortAZ : shows.sort((a, b) => a.title.localeCompare(b.title)),

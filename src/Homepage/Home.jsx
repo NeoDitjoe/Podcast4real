@@ -8,8 +8,9 @@ export default function Home(){
 
     return(
         <>     <ScrollToTop/>
-            { user ? '' : <NavLink to={"/login"}>Log in for better experience</NavLink>}
-            <div>
+            { user ? '' : <p style={{marginLeft: '2%'}}> please <NavLink to={"/login"} >Log in</NavLink> for better experience</p>}
+
+            <div className="home">
                 <h1 style={{color:'white'}}>Welcome to Podcast4real</h1>
                 { user ? <NavLink to={'shows'}>shows</NavLink> : ''}
             </div>

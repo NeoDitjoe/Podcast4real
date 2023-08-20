@@ -12,12 +12,20 @@ export default function ShowDetails() {
     const shows = useLoaderData()
     const seasons = shows.seasons
 
+    function genresError(){
+        try {
+            return <p>{shows.genres.slice(2).join(', ')}</p>
+        } catch (error) {
+            return <ErrorMessage/>
+        }
+    }
+
     return (
         <>
 
             <h5 style={{color: 'white'}}>Genres</h5>
 
-                <p>{shows.genres.slice(2).join(', ')}</p>
+                {genresError()}
             <h5 style={{color: 'white'}}>Description</h5>
 
             <p className="show-description">{showMore ? shows.description : shows.description.substring(0, 250)}

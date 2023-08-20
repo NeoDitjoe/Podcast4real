@@ -26,6 +26,16 @@ export function MusicPlayer({audio, title, image, show}){
             }
         }
 
+        useEffect(() => {
+            play();
+            setIsPlaying(true);
+    
+            return () => {
+                pause();
+                setIsPlaying(false);
+            };
+        }, [play]);
+
         const [currTime, setCurrTime] = useState({
             min: "",
             sec: "",

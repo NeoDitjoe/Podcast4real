@@ -3,6 +3,7 @@ import { NavLink, Outlet, useLoaderData, useParams } from "react-router-dom"
 import { useStateContext } from "../UseContext/UseContext"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import supabase from "../Auth/supabase"
+import ErrorMessage from "../AudioPlayer/ErrorMessage/ErrorMessage"
 
 export default function ShowDetails() {
     const { setEpisodesContext, setShowsContext, userId } = useStateContext()
@@ -30,18 +31,22 @@ export default function ShowDetails() {
             {
                 seasons.map((season) => {
                     
-                    return(
-                        <div key={season.season}>
-                            <NavLink to={"episodes"} style={{textDecoration: 'none'}}>
-
-                                <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
-                                <img className="img-season" src={season.image} onClick={() => {
-                                    setEpisodesContext(season)
-                                    setShowsContext(shows)}}/>
-                            </NavLink> 
-
-                        </div>
-                    )
+                    try {
+                        return(
+                            <div key={season.season}>
+                                <NavLink to={"episodes"} style={{textDecoration: 'none'}}>
+    
+                                    <h6 style={{color:'orange', textDecoration: 'none'}}>{season.title}</h6>
+                                    <img className="img-season" src={season.image} onClick={() => {
+                                        setEpisodesContext(season)
+                                        setShowsContext(shows)}}/>
+                                </NavLink> 
+    
+                            </div>
+                        )
+                    } catch (error) {
+                        return <ErrorMessage/>
+                    }
                 })
             }
         </>

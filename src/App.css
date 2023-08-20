@@ -6,6 +6,17 @@
     background-color: rgb(29, 29, 29);
 }
 
+::-webkit-scrollbar { 
+    width: 0.3em;
+    height: 0.9px;
+}
+
+::-webkit-scrollbar-thumb {
+    height: 40px;
+    background-color: rgb(165, 163, 163);
+    outline: 1px solid rgba(255, 166, 0, 0.221);
+}
+
 /* audioplayer */
 
 .audioplayer{
@@ -160,6 +171,7 @@ margin: 1%;
     color: white;
     /* margin-top: 1%; */
     margin-bottom: 4%;
+    margin-top: 2%;
 }
 
 /* seasons */

@@ -120,7 +120,7 @@ export function MusicPlayer({audio, title, image, show}){
 
                     HandleAddingToFavourites(title) ?  removeFavs()  : addfavourite() 
                     
-                    }} style={{ background: "transparent", border: 'none'}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
+                    }} style={{ background: "transparent", border: 'none', margin:'2%'}}>{ starColor ?  <img src={starred} style={{ width: '25px' , background: "transparent"}} /> : HandleAddingToFavourites(title)  ? <img src={starred} style={{ width: '25px%', background: "transparent"}} /> : <img src={star} style={{ width: '25px', background: "transparent"}}/> }
                 </button>
 
                 <div className={ audioLayout ? "time-adjust" : "min-time-adjust" }>

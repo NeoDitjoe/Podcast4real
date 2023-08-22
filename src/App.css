@@ -446,10 +446,14 @@ input[type="range"] {
 }
 
 .play-buttons {
+    position: sticky;
+    bottom: 3%;
     text-align: center;
     display: flex;
     justify-content: space-around;
     background-color: transparent;
+
+
 }
 
 .custom-icon {

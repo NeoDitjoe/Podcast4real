@@ -74,7 +74,7 @@ export function MusicPlayer({audio, title, image, show}){
         }
         useEffect(() => {
             HandleAddingToFavourites()
-        })
+        }, [])
                     
 
     return (

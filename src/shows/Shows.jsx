@@ -79,7 +79,7 @@ export default function Shows(){
             }
             fetchData()
         }
-    })
+    }, [])
 
     function slideShow(title, mapOver ,titleStyle){
         try {

@@ -55,7 +55,7 @@ function App() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session)
       setUserId(session.user.id)
-    })
+    }, [])
 
     const {
       data: { subscription },

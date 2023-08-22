@@ -1,6 +1,6 @@
 import { useLoaderData, Link } from "react-router-dom"
 import supabase from "../Auth/supabase"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useStateContext } from "../UseContext/UseContext"
 import FavouritesShow from "./favourites"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
@@ -13,7 +13,7 @@ export default function Shows(){
 
     const shows = useLoaderData()
 
-    function sliceShows(){
+    const sliceShows = useMemo (() => {
         try {
             return{ 
                 mostPlayed: shows.slice(40, 50),
@@ -26,9 +26,9 @@ export default function Shows(){
         } catch (error) {
             return <ErrorMessage/>
         }
-    }
+    }, [shows, favouritesState])
 
-    function sortAZ(){
+    const sortAZ = useMemo (() => {
         try {
             return{ 
                 sortAZ : shows.sort((a, b) => a.title.localeCompare(b.title))
@@ -36,8 +36,9 @@ export default function Shows(){
         } catch (error) {
             return <ErrorMessage/>
         }
-    }
-    function sortZA(){
+    }, [shows])
+
+    const sortZA = useMemo (() => {
         try {
             return{ 
                 sortZA : shows.sort((a, b) => b.title.localeCompare(a.title))
@@ -45,7 +46,7 @@ export default function Shows(){
         } catch (error) {
             return <ErrorMessage/>
         }
-    }
+    }, [shows])
 
 
     /* these truncate the title */
@@ -113,15 +114,15 @@ export default function Shows(){
             <>
                 {
                     user ? <div>
-                        {slideShow("Most Played", sliceShows().mostPlayed, "most-played" )}
+                        {slideShow("Most Played", sliceShows.mostPlayed, "most-played" )}
     
-                        {sliceShows().favourites && <FavouritesShow
-                            mapOver = {sliceShows().favourites}
+                        {sliceShows.favourites && <FavouritesShow
+                            mapOver = {sliceShows.favourites}
                         />}
     
-                        {slideShow("Recommended", sliceShows().recommended, "most-played-opps" )}
+                        {slideShow("Recommended", sliceShows.recommended, "most-played-opps" )}
     
-                        {slideShow(<button style={{color:'white'}} onClick={() => {setSortAphabetically(!sortAphabetically) }}>{sortAphabetically ?  'Arrange from A-Z': ' Arrange from Z-A'}</button>, sortAphabetically ? sortZA().sortZA  : sortAZ().sortAZ, "most-played-opps" )}
+                        {slideShow(<button style={{color:'white'}} onClick={() => {setSortAphabetically(!sortAphabetically) }}>{sortAphabetically ?  'Arrange from A-Z': ' Arrange from Z-A'}</button>, sortAphabetically ? sortZA.sortZA  : sortAZ.sortAZ, "most-played-opps" )}
     
     
     

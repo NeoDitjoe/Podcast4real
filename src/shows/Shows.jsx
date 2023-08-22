@@ -93,7 +93,7 @@ export default function Shows(){
                                 return (
                                     <Link to={show.id} key={show.id} className="each-show">
                                         
-                                        <img className="img-show" src={show.image}></img>
+                                        <img className="img-show" src={show.image} loading="lazy"></img>
                                         <p>{show.shows}</p>
                                         <h6 style={{paddingTop: "6%"}}>{truncateText(show.title , 15)}</h6>
                                     </Link>

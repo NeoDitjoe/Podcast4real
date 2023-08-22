@@ -38,7 +38,7 @@ export default function FavouritesShow({mapOver}){
                                             setAudioShow(show.shows)
                                         }, 200);
                                     }}>
-                                    <img className="img-show" src={show.image}></img>
+                                    <img className="img-show" src={show.image} loading="lazy"></img>
                                     <div className="shows-scroll">
                                         <p className="shows-scroll-text">{show.shows} </p> 
                                     </div>

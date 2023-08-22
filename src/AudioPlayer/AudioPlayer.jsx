@@ -82,7 +82,7 @@ export function MusicPlayer({audio, title, image, show}){
             { audioLayout ? <img className= "blur" src={image}  /> : ''}
             <div className={ audioLayout ? "component" : "min-component"}>
                 <h3 className={ audioLayout? "playing-now" : "min-playing-now"} onClick={() => setAudioLayout(!audioLayout)}>Playing Now</h3>
-                <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image}  />
+                <img className={ audioLayout ? "musicCover" : "min-musicCover"} src={image} loading="lazy" />
 
                 <div className={audioLayout ? "audio-title-subtitle" : "min-audio-title-subtitle"} onClick={() => { audioLayout ? '':setAudioLayout(!audioLayout)}}>
                     <h3 className={ audioLayout ? "audio-title" : "min-audio-title"}>{title}</h3>

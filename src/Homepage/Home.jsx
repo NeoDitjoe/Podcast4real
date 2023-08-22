@@ -54,7 +54,7 @@ export default function Home(){
                                 return (
                                     <NavLink to={user ? '' : 'login'} key={show.id} style={{}}>
                                 
-                                        <img className="img-show" src={show.image}></img>
+                                        <img className="img-show" src={show.image} loading="lazy"></img>
                                     </NavLink>
                                 )
                             })
@@ -88,7 +88,7 @@ export default function Home(){
 
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>
                         <Item style={{backgroundColor:'rgb(255, 160, 78)' ,boxShadow:'none'}}>
-                            <img src={firstImag} alt="image" className="firstImag" />
+                            <img src={firstImag} alt="image" className="firstImag" loading="lazy"/>
                         </Item>
                     </Grid>
 
@@ -114,7 +114,7 @@ export default function Home(){
                     </Grid>
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'green'}}>
                         <Item style={{backgroundColor:'white',boxShadow:'none'}}>
-                                <img style={{width:'100%', backgroundColor: "transparent"}} src={casset} />
+                                <img style={{width:'100%', backgroundColor: "transparent"}} src={casset}  />
                         </Item>
                     </Grid>
                     

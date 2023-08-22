@@ -447,7 +447,7 @@ input[type="range"] {
 
 .play-buttons {
     position: sticky;
-    bottom: 3%;
+    bottom: 0;
     text-align: center;
     display: flex;
     justify-content: space-around;

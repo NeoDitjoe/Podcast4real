@@ -8,7 +8,6 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 export default function Shows(){
 
     const [ fetchError, setfetchError ] = useState(null)
-    const [ sortAphabetically, setSortAphabetically] = useState(false)
     const { userId, user, setFavouritesState, favouritesState } = useStateContext()
 
     const shows = useLoaderData()
@@ -28,26 +27,15 @@ export default function Shows(){
         }
     }, [shows, favouritesState])
 
-    const sortAZ = useMemo (() => {
+    const sortLatest = useMemo (() => {
         try {
             return{ 
-                sortAZ : shows.sort((a, b) => a.title.localeCompare(b.title))
+                latest : shows.sort((a, b) => b.updated.localeCompare(a.updated)).slice(0, 15)
             }
         } catch (error) {
             return <ErrorMessage/>
         }
     }, [shows])
-
-    const sortZA = useMemo (() => {
-        try {
-            return{ 
-                sortZA : shows.sort((a, b) => b.title.localeCompare(a.title))
-            }
-        } catch (error) {
-            return <ErrorMessage/>
-        }
-    }, [shows])
-
 
     /* these truncate the title */
     function truncateText(text, maxLength) {
@@ -109,28 +97,49 @@ export default function Shows(){
         }
     }
 
+    const [ results , setResults ] = useState(null)
+    const [ resultsSlide , setResultSlide ] = useState(false)
 
+    const search = useMemo(() => {
         return (
-            <>
-                {
-                    user ? <div>
-                        {slideShow("Most Played", sliceShows.mostPlayed, "most-played" )}
-    
-                        {sliceShows.favourites && <FavouritesShow
-                            mapOver = {sliceShows.favourites}
-                        />}
-    
-                        {slideShow("Recommended", sliceShows.recommended, "most-played-opps" )}
-    
-                        {slideShow(<button style={{color:'white'}} onClick={() => {setSortAphabetically(!sortAphabetically) }}>{sortAphabetically ?  'Arrange from A-Z': ' Arrange from Z-A'}</button>, sortAphabetically ? sortZA.sortZA  : sortAZ.sortAZ, "most-played-opps" )}
-    
-    
-    
-                    </div> : <Link to='/login'>User not found Please Log in</Link>
-                }
-            </>
-        )
+            <form  onSubmit={(e) => {
+                    e.preventDefault()
+                    
+                    setResultSlide(true)
+                    const filtered = shows.filter((item) => {
+                        return (item.title.toLowerCase().includes(document.querySelector('[data-search]').value.toLowerCase()))
+                    })
 
+                    setResults(filtered)
+                    document.querySelector('[data-search]').value = ''
+                }} >
+                <input style={{ border:'solid 1px gray', color:'white'}} type="text" data-search required></input>
+                <button style={{background: 'gray', color:' white', paddingLeft: '5px', paddingRight: '5px'}}>Search</button>
+            </form>
+        )
+    })
+
+    return (
+        <>
+            {
+                user ? <div>
+                    {search}    
+                    {results && resultsSlide && <> <button onClick={() => setResultSlide(false)} style={{background: 'gray', color:' white' , paddingLeft: '5px', paddingRight: '5px'}}>Close search</button> { slideShow(" Search results", results, "most-played" )} </> }
+
+                    {slideShow("Most Played", sliceShows.mostPlayed, "most-played" )}
+
+                    {sliceShows.favourites && <FavouritesShow
+                        mapOver = {sliceShows.favourites}
+                    />}
+
+                    {slideShow("Recommended", sliceShows.recommended, "most-played-opps" )}
+
+                    {slideShow("Recents",  sortLatest.latest , "most-played-opps" )}
+
+                </div> : <Link to='/login'>User not found Please Log in</Link>
+            }
+        </>
+    )
 }
 
 export const Showsloader = async () => {

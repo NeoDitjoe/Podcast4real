@@ -18,9 +18,6 @@ export default function Episodes(){
                 favouritesState && favouritesState.some((episode) =>  episode.title === favEpisode)
         )
     }
-    useEffect(() => {
-        HandleAddingToFavourites()
-    })
 
     useEffect(() => {
         if(userId){

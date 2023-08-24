@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       <Route index  element={<Home/>} loader={Showsloader}/>
       <Route path='history'  element={<h1>hello again World</h1>}/>
 
-      <Route path='more' element={<More/>}>
+      <Route path='more' element={<More/>} >
         <Route path="help" element={<Help/>}/>
         <Route path="contact_us" element={<ContactUs/>}/>
         <Route path="about_us" element={<AboutUs/>}/>
@@ -48,9 +48,7 @@ const router = createBrowserRouter(
 function App() {
   
   const { setUser, setUserId, audioLayout, setAudioLayout, audioShow, playAudioImage, playAudio, playAudioTitle, setCollapseMenu, collapseMenu } = useStateContext()
-
-  // const [ audioLayout, setAudioLayout ] = useState(false)
-
+  
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session)

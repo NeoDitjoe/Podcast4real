@@ -17,7 +17,7 @@ export default function Shows(){
             return{ 
                 mostPlayed: shows.slice(40, 50),
                 favourites: favouritesState,
-                recommended: shows.slice(40, 60),
+                recommended: shows.slice(10, 20),
                 sortAZ : shows.sort((a, b) => a.title.localeCompare(b.title)),
                 sortZA : shows.sort((a, b) => b.title.localeCompare(a.title))
             }
@@ -150,3 +150,4 @@ export const Showsloader = async () => {
         return <ErrorMessage/>
     }
 }
+

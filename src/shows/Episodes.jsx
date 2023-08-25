@@ -6,6 +6,7 @@ import supabase from "../Auth/supabase"
 import star from '../assets/star.png'
 import starred from '../assets/starred.png'
 import ScrollToTop from "../scrollToTop/ScrollToTop"
+import History from "./History"
 
 export default function Episodes(){
 
@@ -74,6 +75,19 @@ export default function Episodes(){
                                                         setPlayAudioTitle(null)
                                                         setPlayAudioImage(null)
                                                         setAudioShow(null)
+
+                                                        const addhistory = async () => {
+                                                            const { data, error} = await supabase
+                                                                .from('podcast4realHistory')
+                                                                .insert({
+                                                                    title: episode.title,
+                                                                    audio: episode.file,
+                                                                    seasonImages: episodesContext.image,
+                                                                    shows: episodesContext.title,
+                                                                    user_id: userId
+                                                                })
+                                                        }
+                                                        addhistory()
 
                                                         setTimeout(() => {
                                                             setPlayAudioTitle(episode.title)

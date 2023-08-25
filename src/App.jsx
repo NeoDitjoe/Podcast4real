@@ -14,6 +14,7 @@ import AboutUs from "./More/About_us";
 import ContactUs from "./More/Contact_us";
 import Help from "./More/help";
 import { MusicPlayer } from "./AudioPlayer/AudioPlayer";
+import History from "./shows/History";
 import supabase from "./Auth/supabase";
 
 const router = createBrowserRouter(
@@ -22,7 +23,7 @@ const router = createBrowserRouter(
 
       <Route path='login'  element={<LoginIn />}/>
       <Route index  element={<Home/>} loader={Showsloader}/>
-      <Route path='history'  element={<h1>hello again World</h1>}/>
+      <Route path='history'  element={<History/>}/>
 
       <Route path='more' element={<More/>} >
         <Route path="help" element={<Help/>}/>
@@ -37,8 +38,6 @@ const router = createBrowserRouter(
         <Route path=':id' element={<Seasons/>} loader={ShowsDetailsLoader}/>
         <Route path=':id/episodes' element={<Episodes/>}/>
         <Route path={'*'} element={<><p>page not found. redirect to home page</p><NavLink to={'/shows'}>back</NavLink></>}/>
-        
-
       </Route>
 
     </Route>

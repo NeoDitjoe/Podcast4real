@@ -74,7 +74,7 @@ export default function Home(){
             {/* { user ? '' : <p style={{marginLeft: '2%'}}> please <NavLink to={"/login"} >Log in</NavLink> for better experience</p>} */}
 
             <Box sx={{ flexGrow: 1 }} className="home" style={{backgroundColor:'rgb(255, 160, 78)'}}>
-                <h1 style={{color:'white', backgroundColor:'rgb(255, 160, 78)', textAlign:'center'}}>Welcome to Podcast4real</h1> 
+                <h1 style={{color:'white', backgroundColor:'rgb(255, 160, 78)', textAlign:'center'}}>{ user ? "Welcome to Podcast4real" : "login to view shows"}</h1> 
                 <Grid container spacing={{ xs: 0, md: 0 }} columns={{ xs: 2, sm: 2, md: 8 }}>
                 
                     <Grid  xs={2} sm={4} md={4} style={{backgroundColor:'rgb(255, 160, 78)'}}>

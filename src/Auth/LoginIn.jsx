@@ -23,7 +23,7 @@ export default function LoginIn(){
             
             <ScrollToTop/>
             <img src={logo} alt="" style={{ width:'50%'}} loading="lazy"/>
-            <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+            <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers = {['github']}/>
         </div> 
         )
     }

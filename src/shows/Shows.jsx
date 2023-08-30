@@ -107,7 +107,14 @@ export default function Shows(){
                     
                     setResultSlide(true)
                     const filtered = shows.filter((item) => {
-                        return (item.title.toLowerCase().includes(document.querySelector('[data-search]').value.toLowerCase()))
+                        return (
+                            item.title
+                            .toLowerCase()
+                            .includes(
+                                document.querySelector('[data-search]')
+                                .value
+                                .toLowerCase()
+                            ))
                     })
 
                     setResults(filtered)

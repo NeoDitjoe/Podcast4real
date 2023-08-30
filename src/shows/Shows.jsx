@@ -100,38 +100,51 @@ export default function Shows(){
     const [ results , setResults ] = useState(null)
     const [ resultsSlide , setResultSlide ] = useState(false)
 
+    
+    const [value, setValue] = useState("");
+
+    const handleChange = (event) => {
+      setValue(event.target.value);
+    };
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+
+      setResultSlide(true)
+      const filtered = shows.filter((item) => {
+          return (
+              item.title
+              .toLowerCase()
+              .includes(
+                value
+                .toLowerCase()
+              ))
+      })
+
+      setResults(filtered)
+      setValue('')
+    };
+
     const search = useMemo(() => {
         return (
-            <form  onSubmit={(e) => {
-                    e.preventDefault()
-                    
-                    setResultSlide(true)
-                    const filtered = shows.filter((item) => {
-                        return (
-                            item.title
-                            .toLowerCase()
-                            .includes(
-                                document.querySelector('[data-search]')
-                                .value
-                                .toLowerCase()
-                            ))
-                    })
+            <>
+            <form onSubmit={handleSubmit}>
 
-                    setResults(filtered)
-                    document.querySelector('[data-search]').value = ''
-                }} >
-                <input style={{ border:'solid 1px gray', color:'white'}} type="text" data-search required></input>
-                <button style={{background: 'gray', color:' white', paddingLeft: '5px', paddingRight: '5px'}}>Search</button>
+                <input value={value} required onChange={handleChange} style={{ border:'solid 1px gray', color:'white'}}/>
+                <input type="submit" value="Submit"  style={{background: 'gray', color:' white', paddingLeft: '5px', paddingRight: '5px'}}/>
             </form>
+          
+          </>
         )
     })
 
     return (
         <>
             {
-                user ? <div>
+                user ? 
+                <div>
                     {search}    
-                    {results && resultsSlide && <> <button onClick={() => setResultSlide(false)} style={{background: 'gray', color:' white' , paddingLeft: '5px', paddingRight: '5px'}}>Close search</button> { slideShow(" Search results", results, "most-played" )} </> }
+                    {results && resultsSlide && <> <button onClick={() => setResultSlide(false)} style={{background: 'gray', color:' white' , paddingLeft: '5px', paddingRight: '5px'}}>Close search</button> { slideShow(`Search results ${value}`, results, "most-played" )} </> }
 
                     {slideShow("Most Played", sliceShows.mostPlayed, "most-played" )}
 

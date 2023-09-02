@@ -76,7 +76,8 @@ export function MusicPlayer({audio, title, image, show}){
     useEffect(() => {
         HandleAddingToFavourites()
     }, [])
-        
+        console.log(episodesContext.episodes.length >= nextAudio)
+        console.log(nextAudio)
     return (
         <div>
             { audioLayout ? <img className= "blur" src={image}  /> : ''}
@@ -184,7 +185,10 @@ export function MusicPlayer({audio, title, image, show}){
 
                         <button className="playButton" 
                             onClick={() => {
+                            if(episodesContext.episodes.length -1  > nextAudio ){
                                 setNextAudio(++nextAudio)
+                            }else{setNextAudio(-1)}
+
                                 console.log(episodesContext.episodes[nextAudio])
 
                                 setPlayAudioTitle(episodesContext.episodes[nextAudio].title)

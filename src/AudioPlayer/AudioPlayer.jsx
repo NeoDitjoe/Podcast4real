@@ -151,8 +151,9 @@ export function MusicPlayer({audio, title, image, show}){
 
                         <button className="playButton"
                             onClick={() => {
-                                setNextAudio(--nextAudio)
-                                console.log(episodesContext.episodes.length)
+                                if( nextAudio > 0){
+                                    setNextAudio(--nextAudio)
+                                }
 
                                 setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
                                 setPlayAudio(episodesContext.episodes[nextAudio].file)

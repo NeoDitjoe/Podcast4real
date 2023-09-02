@@ -96,7 +96,7 @@ export default function Episodes(){
                                                             setPlayAudio(episode.file)
                                                             setPlayAudioImage(episodesContext.image)
                                                             setAudioShow(episodesContext.title)
-                                                            setNextAudio(episode.episode)
+                                                            setNextAudio(episode.episode -1)
                                                         }, 1000);
                                                     }}>
 

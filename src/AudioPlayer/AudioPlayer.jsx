@@ -48,9 +48,9 @@ export function MusicPlayer({audio, title, image, show}){
         const min = Math.floor(sec / 60);
         const secRemain = Math.floor(sec % 60);
         const time = {
-        min: min,
-        sec: secRemain
-    }
+            min: min,
+            sec: secRemain
+        }
         
 
     useEffect(() => {
@@ -153,9 +153,13 @@ export function MusicPlayer({audio, title, image, show}){
                                 if( nextAudio > 0){
                                     setNextAudio(--nextAudio)
                                 }
+                                setPlayAudio(null)
 
-                                setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
-                                setPlayAudio(episodesContext.episodes[nextAudio].file)
+                                setTimeout(() => {
+                                    setPlayAudio(episodesContext.episodes[nextAudio].file)
+                                    setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
+    
+                                }, 1);
                             }}
                         >
                             <IconContext.Provider value={{ className: "custom-icon" , size: "3em"}} >
@@ -188,10 +192,14 @@ export function MusicPlayer({audio, title, image, show}){
                                 setNextAudio(++nextAudio)
                             }else{setNextAudio(-1)}
 
-                                console.log(episodesContext.episodes[nextAudio])
+                            setPlayAudio(null)
 
-                                setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
+                            setTimeout(() => {
                                 setPlayAudio(episodesContext.episodes[nextAudio].file)
+                                setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
+                                
+
+                            }, 1);
 
                                 episodesContext.episodes.length
                             }}

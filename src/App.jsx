@@ -72,7 +72,7 @@ function App() {
     { audioLayout ? '' : <RouterProvider router={router}/>  }
 
     {
-      playAudio && <MusicPlayer
+      playAudioTitle && <MusicPlayer
         audio={playAudio}
         title={playAudioTitle}
         image={playAudioImage}

@@ -44,6 +44,7 @@ export default function Episodes(){
         }
     }, [openedSeason])
 
+    let [ increament, setincrement] = useState(0)
     return (
 
         <>
@@ -52,6 +53,7 @@ export default function Episodes(){
             
                 <>
                     <ScrollToTop/>
+                  
                     {   episodesContext ?
                         <>
 
@@ -63,6 +65,11 @@ export default function Episodes(){
                                     <p style={{ background:'transparent', color:'white', fontSize:'80%'}}><img src={logo} style={{ background:'transparent', width:'19%'}}></img> podcast4real</p>
                                 </div>
                             </div>
+
+                            <button onClick={() => {
+                                setincrement(++increament)
+                                console.log(episodesContext.episodes[increament].title)
+                            }}>click</button>
 
                             {
                                 episodesContext.episodes.map((episode) => {

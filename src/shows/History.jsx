@@ -39,7 +39,7 @@ const History = (title, file, showtitle) => {
         <div className="history" style={{padding:'2%'}}>
         
             <h1 style={{ color: ' white'}}>Coming soon...</h1>
-            <h6 style={{ color: ' white'}}>user will be able to keep track of which podcast the played</h6>
+            <h6 style={{ color: ' white'}}>user will be able to keep track of which podcast they have played</h6>
         </div>
     );
 }

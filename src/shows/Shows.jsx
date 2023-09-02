@@ -11,7 +11,7 @@ export default function Shows(){
     const { userId, user, setFavouritesState, favouritesState } = useStateContext()
 
     const shows = useLoaderData()
-
+    
     const sliceShows = useMemo (() => {
         try {
             return{ 

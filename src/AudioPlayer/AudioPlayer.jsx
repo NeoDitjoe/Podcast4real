@@ -10,8 +10,9 @@ import supabase from "../Auth/supabase";
 
 export function MusicPlayer({audio, title, image, show}){
 
-    const { audioLayout, setAudioLayout, favouritesState, userId } = useStateContext()
+    const { audioLayout, setAudioLayout, favouritesState, userId, episodesContext, setPlayAudioTitle, setPlayAudioImage, setAudioShow, setPlayAudio } = useStateContext()
     const [ starColor, setStarColor ] = useState(false)
+    let [ nextAudio, setNextAudio ] = useState(0)
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [play, { pause, duration, sound }] = useSound(audio);
@@ -148,7 +149,15 @@ export function MusicPlayer({audio, title, image, show}){
                 
                     <div className="play-buttons">
 
-                        <button className="playButton">
+                        <button className="playButton"
+                            onClick={() => {
+                                setNextAudio(--nextAudio)
+                                console.log(episodesContext.episodes.length)
+
+                                setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
+                                setPlayAudio(episodesContext.episodes[nextAudio].file)
+                            }}
+                        >
                             <IconContext.Provider value={{ className: "custom-icon" , size: "3em"}} >
                                 <BiSkipPrevious />
                             </IconContext.Provider>
@@ -173,7 +182,17 @@ export function MusicPlayer({audio, title, image, show}){
                             )
                         }
 
-                        <button className="playButton">
+                        <button className="playButton" 
+                            onClick={() => {
+                                setNextAudio(++nextAudio)
+                                console.log(episodesContext.episodes[nextAudio])
+
+                                setPlayAudioTitle(episodesContext.episodes[nextAudio].title)
+                                setPlayAudio(episodesContext.episodes[nextAudio].file)
+
+                                episodesContext.episodes.length
+                            }}
+                        >
                             <IconContext.Provider value={{ size: "3em", className: "custom-icon"}}>
                                 <BiSkipNext />
                             </IconContext.Provider>

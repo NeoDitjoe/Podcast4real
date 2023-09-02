@@ -76,8 +76,7 @@ export function MusicPlayer({audio, title, image, show}){
     useEffect(() => {
         HandleAddingToFavourites()
     }, [])
-        console.log(episodesContext.episodes.length >= nextAudio)
-        console.log(nextAudio)
+
     return (
         <div>
             { audioLayout ? <img className= "blur" src={image}  /> : ''}

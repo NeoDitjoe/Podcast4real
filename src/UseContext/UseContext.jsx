@@ -20,11 +20,12 @@ export default function StateContextProvider({ children }) {
     const [ loginContext, setLoginContext ] = useState(null)
     const [ audioShow, setAudioShow ] = useState(null)
     const [ audioLayout, setAudioLayout ] = useState(false)
+    let [ nextAudio, setNextAudio ] = useState()
 
     return (
         <Context.Provider value = {{ audioLayout, setAudioLayout, audioShow, setAudioShow, playAudioImage, setPlayAudioImage, loginContext, setLoginContext , 
                 userId, setUserId, favouritesState, setFavouritesState, showsContext, setShowsContext, user, setUser, collapseMenu ,setCollapseMenu ,episodesContext, setEpisodesContext, 
-                playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle 
+                playAudio, setPlayAudio, playAudioTitle, setPlayAudioTitle, nextAudio, setNextAudio
             }}>
             { children }
         </Context.Provider>

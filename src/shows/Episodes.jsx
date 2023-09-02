@@ -12,6 +12,7 @@ export default function Episodes(){
 
     // const episodee = useLoaderData()
     const { setAudioShow, userId, episodesContext, setPlayAudioImage, setPlayAudio, setPlayAudioTitle, showsContext, favouritesState } = useStateContext()
+    let { nextAudio, setNextAudio } = useStateContext()
     const [ openedSeason, setOpenedSeason ] = useState(null)
 
     function HandleAddingToFavourites(favEpisode) {  
@@ -44,7 +45,6 @@ export default function Episodes(){
         }
     }, [openedSeason])
 
-    let [ increament, setincrement] = useState(0)
     return (
 
         <>
@@ -65,11 +65,6 @@ export default function Episodes(){
                                     <p style={{ background:'transparent', color:'white', fontSize:'80%'}}><img src={logo} style={{ background:'transparent', width:'19%'}}></img> podcast4real</p>
                                 </div>
                             </div>
-
-                            <button onClick={() => {
-                                setincrement(++increament)
-                                console.log(episodesContext.episodes[increament].title)
-                            }}>click</button>
 
                             {
                                 episodesContext.episodes.map((episode) => {
@@ -101,6 +96,7 @@ export default function Episodes(){
                                                             setPlayAudio(episode.file)
                                                             setPlayAudioImage(episodesContext.image)
                                                             setAudioShow(episodesContext.title)
+                                                            setNextAudio(episode.episode)
                                                         }, 1000);
                                                     }}>
 

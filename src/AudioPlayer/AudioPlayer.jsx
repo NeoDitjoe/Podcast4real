@@ -12,72 +12,71 @@ export function MusicPlayer({audio, title, image, show}){
 
     const { audioLayout, setAudioLayout, favouritesState, userId, episodesContext, setPlayAudioTitle, setPlayAudioImage, setAudioShow, setPlayAudio } = useStateContext()
     const [ starColor, setStarColor ] = useState(false)
-    let [ nextAudio, setNextAudio ] = useState(0)
+    let { nextAudio, setNextAudio } = useStateContext()
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [play, { pause, duration, sound }] = useSound(audio);
 
-        const playingButton = () => {
-            if (isPlaying) {
-                pause();
-                setIsPlaying(false);
-            } else {
-                play();
-                setIsPlaying(true);
-            }
-        }
-
-        useEffect(() => {
+    const playingButton = () => {
+        if (isPlaying) {
+            pause();
+            setIsPlaying(false);
+        } else {
             play();
             setIsPlaying(true);
+        }
+    }
+
+    useEffect(() => {
+        play();
+        setIsPlaying(true);
+
+        return () => {
+            pause();
+            setIsPlaying(false);
+        };
+    }, [play]);
+
+    const [currTime, setCurrTime] = useState({
+        min: "",
+        sec: "",
+    });
     
-            return () => {
-                pause();
-                setIsPlaying(false);
-            };
-        }, [play]);
+    const [seconds, setSeconds] = useState()
 
-        const [currTime, setCurrTime] = useState({
-            min: "",
-            sec: "",
-        });
-        
-        const [seconds, setSeconds] = useState()
-
-            const sec = duration / 1000;
-            const min = Math.floor(sec / 60);
-            const secRemain = Math.floor(sec % 60);
-            const time = {
-            min: min,
-            sec: secRemain
-        }
+        const sec = duration / 1000;
+        const min = Math.floor(sec / 60);
+        const secRemain = Math.floor(sec % 60);
+        const time = {
+        min: min,
+        sec: secRemain
+    }
         
 
-        useEffect(() => {
-            const interval = setInterval(() => {
-              if (sound) {
-                setSeconds(sound.seek([]));
-                const min = Math.floor(sound.seek([]) / 60);
-                const sec = Math.floor(sound.seek([]) % 60);
-                setCurrTime({
-                  min,
-                  sec,
-                });
-              }
-            }, 1000);
-            return () => clearInterval(interval);
-          }, [sound]);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (sound) {
+            setSeconds(sound.seek([]));
+            const min = Math.floor(sound.seek([]) / 60);
+            const sec = Math.floor(sound.seek([]) % 60);
+            setCurrTime({
+                min,
+                sec,
+            });
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+        }, [sound]);
 
-        function HandleAddingToFavourites(favEpisode) {  
-            return (
-                    favouritesState && favouritesState.some((episode) =>  episode.title === favEpisode)
-            )
-        }
-        useEffect(() => {
-            HandleAddingToFavourites()
-        }, [])
-                    
-
+    function HandleAddingToFavourites(favEpisode) {  
+        return (
+                favouritesState && favouritesState.some((episode) =>  episode.title === favEpisode)
+        )
+    }
+    useEffect(() => {
+        HandleAddingToFavourites()
+    }, [])
+        
     return (
         <div>
             { audioLayout ? <img className= "blur" src={image}  /> : ''}

@@ -22,7 +22,8 @@ export default function LoginIn(){
         <div style={{padding:'1%', paddingTop:'0%', width:'320px'}}>
             
             <ScrollToTop/>
-            <img src={logo} alt="" style={{ width:'50%'}} loading="lazy"/>
+            <p>If fails to login then the database might be paused due to being not being acctive for a certain time period <br/>
+            please visit the contact page to contact me so I can activate the database</p>
             <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} providers = {['github']}/>
         </div> 
         )

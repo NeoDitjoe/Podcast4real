@@ -15,7 +15,7 @@ export function NavBar(){
                     <NavLink to='login'>{user ? 'logout' : 'login'}</NavLink>
                     <NavLink to='/'>Home</NavLink>
                     { user ? <NavLink to={ user ? 'shows': 'login'}>Shows</NavLink> : ''} 
-                    <NavLink to={user ? 'history' : "login"}>History</NavLink>
+                    <NavLink to={'history'}>History</NavLink>
                     <NavLink to='more'>More</NavLink>
                 </div>
             
